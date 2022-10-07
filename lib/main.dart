@@ -1,7 +1,29 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kampus/core/init/lang/language_manager.dart';
+import 'package:kampus/core/init/navigation/navigation_route.dart';
+import 'package:kampus/core/init/navigation/navigation_service.dart';
+import 'package:kampus/core/init/notifier/theme_notifier.dart';
+import 'package:kampus/view/test/test_view.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'core/init/notifier/provider_notifier.dart';
+
+Future<void> main() async {
+  await _init();
+  runApp(MultiProvider(
+    providers: [...ApplicationProvider.instance.dependItems],
+    child: EasyLocalization(
+        supportedLocales: LanguageManager.instance.supportedLocales,
+        path: "assets/translations",
+        startLocale: LanguageManager.instance.trLocale,
+        child: const MyApp()),
+  ));
+}
+
+Future<void> _init() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 }
 
 class MyApp extends StatelessWidget {
@@ -10,11 +32,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Scaffold(),
+      debugShowCheckedModeBanner: false,
+      theme: context.watch<ThemeNotifier>().currentTheme,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      onGenerateRoute: NavigationRoute.instance.generateRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
+      home: const TestView(),
     );
   }
 }
