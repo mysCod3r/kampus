@@ -4,6 +4,7 @@ import 'package:kampus/core/constants/navigation_constants.dart';
 import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_service.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
+import 'package:kampus/product/widget/bottom_navigation/bottom_navigation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/init/lang/locale_keys.g.dart';
@@ -20,6 +21,7 @@ class _TestViewState extends State<TestView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("First Screen")),
+      bottomNavigationBar: const CustomBottomNavigation(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,7 +29,7 @@ class _TestViewState extends State<TestView> {
             Text(LocaleKeys.current.tr()),
             changeTheme(context),
             changeLanguage(context),
-            goSecondPage()
+            goSecondPage(),
           ],
         ),
       ),
