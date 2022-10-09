@@ -16,10 +16,10 @@ class ApplicationProvider {
 
   List<SingleChildWidget> singleItems = [];
   List<SingleChildWidget> dependItems = [
+    Provider.value(value: NavigationService.instance),
     ChangeNotifierProvider(
       create: (context) => ThemeNotifier(),
     ),
-    Provider.value(value: NavigationService.instance),
     ChangeNotifierProvider(
       create: (context) => BottomNavigationBarNotifier(),
     )

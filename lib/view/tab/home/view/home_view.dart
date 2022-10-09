@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/navigation_constants.dart';
 import '../../../../core/init/navigation/navigation_service.dart';
-import '../../../../product/widget/bottom_navigation/bottom_navigation_widget.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  const HomeView({super.key, this.scaffoldKey});
+
+  final GlobalKey<ScaffoldState>? scaffoldKey;
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -15,7 +16,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomBottomNavigation(),
+      key: widget.scaffoldKey,
       body: Center(
         child: InkWell(
             onTap: () {
