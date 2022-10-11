@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
+import 'package:kampus/product/widget/bottom_navigation/bottom_navigation_widget.dart';
 import 'package:provider/provider.dart';
 
 class SecondTestView extends StatefulWidget {
@@ -16,15 +17,10 @@ class _SecondTestViewState extends State<SecondTestView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Second Screen")),
+      bottomNavigationBar: const CustomBottomNavigation(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('current').tr(),
-            changeTheme(context),
-            changeLanguage(context)
-          ],
-        ),
+        child:
+            ElevatedButton(onPressed: () {}, child: const Text("EXPLORE NOW")),
       ),
     );
   }

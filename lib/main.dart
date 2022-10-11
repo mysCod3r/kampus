@@ -4,7 +4,7 @@ import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_route.dart';
 import 'package:kampus/core/init/navigation/navigation_service.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
-import 'package:kampus/view/test/test_view.dart';
+import 'package:kampus/product/init/notifier/product_providers.dart';
 import 'package:provider/provider.dart';
 
 import 'core/init/notifier/provider_notifier.dart';
@@ -12,7 +12,10 @@ import 'core/init/notifier/provider_notifier.dart';
 Future<void> main() async {
   await _init();
   runApp(MultiProvider(
-    providers: [...ApplicationProvider.instance.dependItems],
+    providers: [
+      ...ApplicationProvider.instance.dependItems,
+      ...ProductProvider.instance.uiChangesItems,
+    ],
     child: EasyLocalization(
         supportedLocales: LanguageManager.instance.supportedLocales,
         path: "assets/translations",
@@ -39,7 +42,6 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
-      home: const TestView(),
     );
   }
 }
