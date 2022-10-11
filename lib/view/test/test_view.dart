@@ -4,10 +4,10 @@ import 'package:kampus/core/constants/navigation_constants.dart';
 import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_service.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
-import 'package:kampus/product/widget/bottom_navigation/bottom_navigation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/init/lang/locale_keys.g.dart';
+import '../../product/init/notifier/bottom_navigation_bar_notifier.dart';
 
 class TestView extends StatefulWidget {
   const TestView({super.key});
@@ -21,7 +21,6 @@ class _TestViewState extends State<TestView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("First Screen")),
-      bottomNavigationBar: const CustomBottomNavigation(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,8 +38,7 @@ class _TestViewState extends State<TestView> {
   TextButton goSecondPage() {
     return TextButton(
         onPressed: () {
-          NavigationService.instance
-              .navigateToPage(path: NavigationConstants.SECOND_TEST_VIEW);
+          NavigationService.instance.navigateToPage(path: NavigationConstants.SECOND_TEST_VIEW, tabIndex: context.read<BottomNavigationBarNotifier>().currentIndex);
         },
         child: const Text("2. Sayfaya Git"));
   }
@@ -56,8 +54,7 @@ class _TestViewState extends State<TestView> {
   TextButton changeLanguage(BuildContext context) {
     return TextButton(
         onPressed: () {
-          if (EasyLocalization.of(context)!.currentLocale ==
-              LanguageManager.instance.trLocale) {
+          if (EasyLocalization.of(context)!.currentLocale == LanguageManager.instance.trLocale) {
             context.setLocale(LanguageManager.instance.enLocale);
           } else {
             context.setLocale(LanguageManager.instance.trLocale);

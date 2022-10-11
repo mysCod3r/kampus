@@ -40,26 +40,6 @@ class CustomBottomNavigation extends StatelessWidget {
                 : const Icon(Icons.person_outline))
       ],
       onTap: (value) {
-        // switch (value) {
-        //   case 0:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.HOME);
-        //     break;
-        //   case 1:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.CATEGORIES);
-        //     break;
-        //   case 2:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.NOTIFICATIONS);
-        //     break;
-        //   case 3:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.PROFILE);
-        //     break;
-        //   default:
-        // }
-
         context.read<BottomNavigationBarNotifier>().currentIndex = value;
       },
     );

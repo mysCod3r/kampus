@@ -20,8 +20,7 @@ class _HomeViewState extends State<HomeView> {
       body: Center(
         child: InkWell(
             onTap: () {
-              NavigationService.instance
-                  .navigateToPage(path: NavigationConstants.TEST_VIEW);
+              NavigationService.instance.navigateToPage(path: NavigationConstants.TEST_VIEW, tabIndex: 0);
             },
             child: const Text("HOME")),
       ),
