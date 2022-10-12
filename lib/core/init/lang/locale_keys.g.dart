@@ -2,6 +2,5 @@
 
 abstract class  LocaleKeys {
   static const current = 'current';
-  static const welcome = 'welcome';
 
 }
