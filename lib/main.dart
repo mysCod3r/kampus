@@ -8,12 +8,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'core/init/notifier/provider_notifier.dart';
+import 'product/init/notifier/product_providers.dart';
 
 Future<void> main() async {
   await _init();
   runApp(MultiProvider(
     providers: [
       ...ApplicationProvider.instance.dependItems,
+      ...ProductProvider.instance.authItems,
       //...ProductProvider.instance.uiChangesItems,
     ],
     child: EasyLocalization(

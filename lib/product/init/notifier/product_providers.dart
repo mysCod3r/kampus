@@ -1,7 +1,4 @@
-import 'package:kampus/product/init/notifier/categories_notifier.dart';
-import 'package:kampus/product/init/notifier/home_notifier.dart';
-import 'package:kampus/product/init/notifier/notifications_notifier.dart';
-import 'package:kampus/product/init/notifier/profile_notifier.dart';
+import 'package:kampus/view/auth/onboard/viewmodel/onboard_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -14,23 +11,16 @@ class ProductProvider {
 
   ProductProvider._init();
 
-  // List<SingleChildWidget> authItems = [
-  //   Provider(
-  //     create: (_) => AuthService(),
-  //   )
-  // ];
-  List<SingleChildWidget> uiChangesItems = [
-    ChangeNotifierProvider(
-      create: (context) => HomeNotifier(),
-    ),
-    ChangeNotifierProvider(
-      create: (context) => CategoriesNotifier(),
-    ),
-    ChangeNotifierProvider(
-      create: (context) => NotificationsNotifier(),
-    ),
-    ChangeNotifierProvider(
-      create: (context) => ProfileNotifier(),
-    ),
+  List<SingleChildWidget> authItems = [
+    // Provider(
+    //   create: (_) => AuthService(),
+    // ),
+    ChangeNotifierProvider(create: (_) => OnboardViewModel()),
   ];
+
+  // List<SingleChildWidget> mobxProviders = [
+  //   Provider<OnboardViewModel>(
+  //     create: (_) => OnboardViewModel(),
+  //   ),
+  // ];
 }
