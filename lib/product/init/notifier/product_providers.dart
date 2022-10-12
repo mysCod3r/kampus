@@ -14,8 +14,11 @@ class ProductProvider {
 
   ProductProvider._init();
 
-  List<SingleChildWidget> singleItems = [];
-  List<SingleChildWidget> dependItems = [];
+  // List<SingleChildWidget> authItems = [
+  //   Provider(
+  //     create: (_) => AuthService(),
+  //   )
+  // ];
   List<SingleChildWidget> uiChangesItems = [
     ChangeNotifierProvider(
       create: (context) => HomeNotifier(),

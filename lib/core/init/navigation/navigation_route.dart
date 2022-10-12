@@ -4,6 +4,7 @@ import 'package:kampus/view/tab/home/view/home_view.dart';
 import 'package:kampus/view/tab/notifications/view/notifications_view.dart';
 import 'package:kampus/view/tab/profile/view/profile_view.dart';
 
+import '../../../view/auth/onboard/view/onboard_view.dart';
 import '../../../view/tab/categories/view/categories_view.dart';
 import '../../../view/test/second_test_view.dart';
 import '../../../view/test/test_view.dart';
@@ -18,7 +19,7 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.DEFAULT:
-        return normalNavigate(const RootView(), NavigationConstants.DEFAULT);
+        return normalNavigate(const OnboardView(), NavigationConstants.DEFAULT);
 
       case NavigationConstants.TEST_VIEW:
         return SlideLeftRoute<bool>(builder: (BuildContext context) => const TestView(), settings: const RouteSettings(name: NavigationConstants.TEST_VIEW));
