@@ -37,20 +37,29 @@ class _RootViewState extends State<RootView> {
       onWillPop: () => NavigationService.instance.onWillPop(
         tabIndex: context.read<BottomNavigationBarNotifier>().currentIndex,
       ),
-      child: Scaffold(
-        body: IndexedStack(
-          index: context.watch<BottomNavigationBarNotifier>().currentIndex,
-          children: _pages
-              .map((page) => Navigator(
-                    key: page.navigatorkey,
-                    onGenerateRoute: NavigationRoute.instance.generateRoute,
-                    onGenerateInitialRoutes: (navigator, initialRoute) {
-                      return [MaterialPageRoute(builder: (context) => page.tab)];
-                    },
-                  ))
-              .toList(),
+      child: SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              const Text("data"),
+              Expanded(
+                child: IndexedStack(
+                  index: context.watch<BottomNavigationBarNotifier>().currentIndex,
+                  children: _pages
+                      .map((page) => Navigator(
+                            key: page.navigatorkey,
+                            onGenerateRoute: NavigationRoute.instance.generateRoute,
+                            onGenerateInitialRoutes: (navigator, initialRoute) {
+                              return [MaterialPageRoute(builder: (context) => page.tab)];
+                            },
+                          ))
+                      .toList(),
+                ),
+              ),
+            ],
+          ),
+          bottomNavigationBar: const CustomBottomNavigation(),
         ),
-        bottomNavigationBar: const CustomBottomNavigation(),
       ),
     );
   }

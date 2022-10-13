@@ -10,6 +10,7 @@ class SVGImagePaths {
   final onboardSVG1 = "onboard_1".toSVG;
   final onboardSVG2 = "onboard_2".toSVG;
   final onboardSVG3 = "onboard_3".toSVG;
+  final party = "party".toSVG;
 }
 
 extension _SVGPATH on String {

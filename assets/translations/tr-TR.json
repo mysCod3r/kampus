@@ -1,4 +1,17 @@
 {
     "current": "Türkçe",
-    "welcome": "Kampüse Hoşgeldin"
+    "welcome": "Kampüse Hoşgeldin",
+    "login":{
+        "login": "GİRİŞ YAP",
+        "signup": "Hesabın yok mu? KAYDOL",
+        "forgot": "ŞİFREMİ UNUTTUM",
+        "password": "   Şifre   ",
+        "email": "   Email   "
+    },
+    "signin":{
+        "signin": "KAYDOL",
+        "login": "Zaten bir hesabın var mı? GİRİŞ YAP",
+        "password": "   Şifre   ",
+        "email": "   Email   "   
+    }
 }

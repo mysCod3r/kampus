@@ -8,15 +8,26 @@ class NavigationService implements INavigationService {
 
   NavigationService._init();
 
+  static final GlobalKey<NavigatorState> authNavigateKey = GlobalKey(debugLabel: "auth");
   static final List<GlobalKey<NavigatorState>> navigatorKeys = [
     GlobalKey(debugLabel: "home"),
     GlobalKey(debugLabel: "categories"),
     GlobalKey(debugLabel: "notifications"),
     GlobalKey(debugLabel: "profile"),
   ];
+
   GlobalKey<NavigatorState> navigatorKey = navigatorKeys[0];
 
+  // ignore: prefer_function_declarations_over_variables
   final removeAllOldRoutes = (Route<dynamic> route) => false;
+
+  Future<void> navigateToPageFromAuth({String? path, Object? data}) async {
+    await authNavigateKey.currentState!.pushNamed(path!, arguments: data);
+  }
+
+  Future<void> navigateToPageFromAuthWithPageClear({String? path, Object? data}) async {
+    authNavigateKey.currentState!.restorablePushNamedAndRemoveUntil(path!, removeAllOldRoutes);
+  }
 
   @override
   Future<void> navigateToPage({String? path, Object? data, int? tabIndex}) async {

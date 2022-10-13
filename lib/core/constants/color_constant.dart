@@ -1,8 +1,11 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class ColorConstants {
   static const BLACK = Color.fromRGBO(36, 36, 36, 1);
   static const WHITE = Color.fromRGBO(255, 255, 255, 1);
+  static const WHITE_2 = Color.fromRGBO(243, 245, 247, 1);
   static const BLUE = Color.fromRGBO(47, 128, 237, 1);
   static const PURPLE = Color.fromRGBO(111, 113, 223, 1);
   static const PURPLE_SH = Color.fromARGB(183, 111, 113, 223);
