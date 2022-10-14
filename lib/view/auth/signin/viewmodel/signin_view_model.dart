@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kampus/core/constants/navigation_constants.dart';
 import 'package:kampus/product/init/service/auth_service.dart';
-
-import '../../../../core/init/navigation/navigation_service.dart';
 
 class SigninViewModel extends ChangeNotifier {
   final AuthService _authService = AuthService.instance;
-  final NavigationService _navigatorKey = NavigationService.instance;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -35,6 +31,6 @@ class SigninViewModel extends ChangeNotifier {
   }
 
   void navigateToLogin() {
-    _navigatorKey.navigateToPageFromAuthWithPageClear(path: NavigationConstants.LOGIN);
+//    _navigatorKey.navigateToPageFromAuthWithPageClear(path: NavigationConstants.LOGIN);
   }
 }

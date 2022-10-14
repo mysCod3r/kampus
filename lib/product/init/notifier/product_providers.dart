@@ -1,4 +1,5 @@
 import 'package:kampus/view/auth/onboard/viewmodel/onboard_view_model.dart';
+import 'package:kampus/view/root/viewmodel/root_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -20,6 +21,7 @@ class ProductProvider {
     //   create: (_) => AuthService(),
     // ),
     ChangeNotifierProvider(create: (_) => SplashViewModel()),
+    ChangeNotifierProvider(create: (_) => RootViewModel()),
     ChangeNotifierProvider(create: (_) => OnboardViewModel()),
     ChangeNotifierProvider(create: (_) => SigninViewModel()),
     ChangeNotifierProvider(create: (_) => LoginViewModel()),

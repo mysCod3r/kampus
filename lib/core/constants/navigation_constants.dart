@@ -7,7 +7,7 @@ class NavigationConstants {
   static const ONBOARD = '/onboard';
   static const LOGIN = '/login';
   static const SIGNIN = '/signin';
-  static const TEST_VIEW = '/profile/test';
+  static const TEST_VIEW = '/test';
   static const SECOND_TEST_VIEW = '/secondTest';
   static const HOME = '/home';
   static const PROFILE = '/profile';

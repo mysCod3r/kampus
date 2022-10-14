@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kampus/core/init/navigation/services/auth_navigation_service.dart';
 
-import '../../../../core/constants/navigation_constants.dart';
-import '../../../../core/init/navigation/navigation_service.dart';
 import '../../../../product/init/service/auth_service.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final AuthService _authService = AuthService.instance;
-  final NavigationService _navigatorKey = NavigationService.instance;
+  final GlobalKey<NavigatorState> authKey = AuthNavigationService.instance.navigatorKey;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -19,7 +18,6 @@ class LoginViewModel extends ChangeNotifier {
     isLoadingChange();
     if (result.user != null) {
       if (1 == 1) {
-        _navigatorKey.navigateToPageFromAuthWithPageClear(path: NavigationConstants.ROOT);
         // Navigate to Root
       } else {
         // Couldn\'t login at this moment. Please try again later
@@ -36,6 +34,6 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void navigateToRegister() {
-    _navigatorKey.navigateToPageFromAuth(path: NavigationConstants.SIGNIN);
+    //   _navigatorKey.navigateToPageFromAuth(path: NavigationConstants.SIGNIN);
   }
 }

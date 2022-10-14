@@ -7,6 +7,8 @@ import 'package:kampus/view/auth/login/viewmodel/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/color_constant.dart';
+import '../../../../core/constants/navigation_constants.dart';
+import '../../../../core/init/navigation/navigation_service.dart';
 import '../../../_product/_constants/image_path_svg.dart';
 
 class LoginView extends StatelessWidget {
@@ -97,6 +99,9 @@ class LoginView extends StatelessWidget {
 
         //NavigationService.instance.navigateToPageFromAuth(path: NavigationConstants.ROOT);
         context.read<LoginViewModel>().login(email: email, password: password);
+        Future.delayed(Duration.zero, () async {
+          await NavigationService.instance.navigateToPage(path: NavigationConstants.ROOT, navigatorKey: context.read<LoginViewModel>().authKey);
+        });
 
         print("email = $email");
         print("password = $password");

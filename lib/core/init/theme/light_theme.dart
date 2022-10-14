@@ -33,7 +33,8 @@ class LightTheme {
             bodyText1: TextStyle(fontSize: 16, color: _lightColor._black),
           ),
       appBarTheme: AppBarTheme(
-        elevation: 1.0,
+        centerTitle: true,
+        elevation: 0.5,
         color: _lightColor._white,
         titleTextStyle: TextStyle(fontSize: 24, color: _lightColor._black),
         iconTheme: IconThemeData(color: _lightColor._black),
