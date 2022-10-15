@@ -10,11 +10,13 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SplashViewModel>(
       builder: (context, value, child) {
-        value.isFirst
-            ? value.goOnboard()
-            : value.isLogin
-                ? value.goRoot()
-                : value.goLogin();
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          value.isFirst
+              ? value.goOnboard()
+              : value.isLogin
+                  ? value.goRoot()
+                  : value.goLogin();
+        });
         return Container(color: Colors.white, child: SvgPicture.asset("assets/svg/splash.svg"));
       },
     );

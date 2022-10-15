@@ -47,7 +47,7 @@ class CustomBottomNavigation extends StatelessWidget {
       ],
       onTap: (value) {
         context.read<NavigationNotifier>().currentIndex = value;
-        context.read<NavigationNotifier>().currentPath = _itemLabels[value];
+        //     context.read<NavigationNotifier>().currentPath = _itemLabels[value];
       },
     );
   }

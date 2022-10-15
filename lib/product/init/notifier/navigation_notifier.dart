@@ -4,12 +4,9 @@ import 'package:kampus/core/init/navigation/services/home_navigation_service.dar
 import 'package:kampus/core/init/navigation/services/notifications_navigation_service.dart';
 import 'package:kampus/core/init/navigation/services/profile_navigation_service.dart';
 
-class NavigationNotifier extends ChangeNotifier {
-  int _currentIndex = 0;
-  int get currentIndex => _currentIndex;
-  String _currentPath = "";
-  String get currentPath => _currentPath;
+import '../../../core/init/navigation/navigation_service.dart';
 
+class NavigationNotifier extends ChangeNotifier {
   List<GlobalKey<NavigatorState>> navigationKeys = [
     HomeNavigationService.instance.navigatorKey,
     NotificationsNavigationService.instance.navigatorKey,
@@ -18,6 +15,10 @@ class NavigationNotifier extends ChangeNotifier {
   ];
 
   GlobalKey<NavigatorState> get currentKey => navigationKeys[_currentIndex];
+  int _currentIndex = 0;
+  int get currentIndex => _currentIndex;
+  String _currentPath = "/home";
+  String get currentPath => _currentPath;
 
   set currentIndex(int index) {
     _currentIndex = index;
@@ -38,5 +39,10 @@ class NavigationNotifier extends ChangeNotifier {
       }
     }
     return isFirstRouteInCurrentTab;
+  }
+
+  void navigateToPage({required String path}) {
+    currentPath = path;
+    NavigationService.instance.navigateToPage(path: path, navigatorKey: currentKey);
   }
 }
