@@ -7,9 +7,9 @@ class CustomBottomNavigation extends StatelessWidget {
   CustomBottomNavigation({super.key});
   final List<String> _itemLabels = [
     NavigationConstants.HOME,
-    NavigationConstants.CATEGORIES,
+    NavigationConstants.SEARCH,
     NavigationConstants.NOTIFICATIONS,
-    NavigationConstants.PROFILE,
+    NavigationConstants.MESSAGES,
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class CustomBottomNavigation extends StatelessWidget {
             label: _itemLabels[1],
             icon: context.read<NavigationNotifier>().currentIndex == 1
                 ? const Icon(
-                    Icons.category,
+                    Icons.search,
                   )
-                : const Icon(Icons.category_outlined)),
+                : const Icon(Icons.search_outlined)),
         BottomNavigationBarItem(
             label: _itemLabels[2],
             icon: context.read<NavigationNotifier>().currentIndex == 2
@@ -41,13 +41,12 @@ class CustomBottomNavigation extends StatelessWidget {
             label: _itemLabels[3],
             icon: context.read<NavigationNotifier>().currentIndex == 3
                 ? const Icon(
-                    Icons.person,
+                    Icons.message,
                   )
-                : const Icon(Icons.person_outline))
+                : const Icon(Icons.message_outlined))
       ],
       onTap: (value) {
         context.read<NavigationNotifier>().currentIndex = value;
-        context.read<NavigationNotifier>().currentPath = _itemLabels[value];
       },
     );
   }

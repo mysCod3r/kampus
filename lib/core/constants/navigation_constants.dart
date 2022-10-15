@@ -7,11 +7,11 @@ class NavigationConstants {
   static const ONBOARD = '/onboard';
   static const LOGIN = '/login';
   static const SIGNIN = '/signin';
-  static const TEST_VIEW = '/test';
-  static const SECOND_TEST_VIEW = '/secondTest';
   static const HOME = '/home';
   static const PROFILE = '/profile';
-  static const CATEGORIES = '/categories';
+  static const SEARCH = '/search';
   static const NOTIFICATIONS = '/notifications';
-  static const SCAF = '/scaf';
+  static const MESSAGES = '/messages';
+  static const DENEME = '/deneme';
+  static const DENEME2 = '/deneme2';
 }

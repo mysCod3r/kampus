@@ -34,10 +34,11 @@ class LightTheme {
           ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
+        toolbarHeight: 50,
         elevation: 0.5,
         color: _lightColor._white,
         titleTextStyle: TextStyle(fontSize: 24, color: _lightColor._black),
-        iconTheme: IconThemeData(color: _lightColor._black),
+        iconTheme: IconThemeData(color: _lightColor._black, size: 30),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: _lightColor._white,

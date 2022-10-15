@@ -9,8 +9,16 @@ class NavigationService {
   final removeAllOldRoutes = (Route<dynamic> route) => false;
 
   @override
-  Future<void> navigateToPage({required GlobalKey<NavigatorState> navigatorKey, String? path, Object? data}) async {
-    await navigatorKey.currentState!.pushNamed(path!, arguments: data);
+  Future<void> navigateToPage({required GlobalKey<NavigatorState> navigatorKey, required String path, Object? data}) async {
+    await navigatorKey.currentState!.pushNamed(path);
+  }
+
+  Future<void> navigateToPopAndPushPage({required GlobalKey<NavigatorState> navigatorKey, required String path, Object? data}) async {
+    await navigatorKey.currentState!.popAndPushNamed(path);
+  }
+
+  void navigatePop({required context, required String path, Object? data}) {
+    Navigator.of(context).pop();
   }
 
   @override
