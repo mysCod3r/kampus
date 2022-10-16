@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kampus/core/base/base_view.dart';
 
-import '../viewmodel/deneme_view_model.dart';
+import '../viewmodel/profile_view_model.dart';
 
-class DenemeView extends StatelessWidget {
-  const DenemeView({super.key});
+class ProfileView extends StatelessWidget {
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<DenemeViewModel>(
-      viewModel: DenemeViewModel(),
+    return BaseView<ProfileViewModel>(
+      viewModel: ProfileViewModel(),
       onModelReady: (model) {
         model.setContext(context);
         model.init();
@@ -19,7 +19,6 @@ class DenemeView extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () {},
-            // onPressed: () => viewModel.navigateTo(NavigationConstants.DENEME2),
             child: const Text("DENEME 2 Git"),
           ),
         ),

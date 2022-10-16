@@ -1,4 +1,7 @@
+import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+
+import 'navigation_notifier.dart';
 
 class ProductProvider {
   static ProductProvider? _instance;
@@ -15,9 +18,7 @@ class ProductProvider {
     // ),
   ];
 
-  // List<SingleChildWidget> mobxProviders = [
-  //   Provider<OnboardViewModel>(
-  //     create: (_) => OnboardViewModel(),
-  //   ),
-  // ];
+  List<SingleChildWidget> dependItems = [
+    ChangeNotifierProvider(create: (context) => NavigationNotifier()),
+  ];
 }

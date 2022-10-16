@@ -9,7 +9,12 @@ class NavigationNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  set currentPath(String path) {
-    notifyListeners();
-  }
+  final List<GlobalKey<NavigatorState>> navigatorKeys = [
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+  ];
+
+  GlobalKey<NavigatorState> get currentKey => navigatorKeys[_currentIndex];
 }

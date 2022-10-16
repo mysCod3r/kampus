@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/base/base_view.dart';
+import '../../../../core/base/base_view.dart';
 import '../viewmodel/notifications_view_model.dart';
 
 class NotificationsView extends StatelessWidget {

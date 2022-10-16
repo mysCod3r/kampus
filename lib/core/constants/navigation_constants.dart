@@ -2,16 +2,19 @@
 
 class NavigationConstants {
   static const DEFAULT = '/';
+  // ---- TAB --- //
   static const ROOT = '/root';
-  static const SPLASH = '/splash';
-  static const ONBOARD = '/onboard';
-  static const LOGIN = '/login';
-  static const SIGNIN = '/signin';
   static const HOME = '/home';
-  static const PROFILE = '/profile';
   static const SEARCH = '/search';
   static const NOTIFICATIONS = '/notifications';
   static const MESSAGES = '/messages';
-  static const DENEME = '/deneme';
-  static const DENEME2 = '/deneme2';
+
+  // ---- AUTH --- //
+  static const ONBOARD = '/onboard';
+  static const LOGIN = '/login';
+  static const SIGNIN = '/signin';
+
+  // --- CONTENT --- //
+  static const PROFILE = '/profile';
+  static const DETAILS = '/details';
 }

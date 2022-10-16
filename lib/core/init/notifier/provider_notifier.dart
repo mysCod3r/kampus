@@ -1,4 +1,3 @@
-import 'package:kampus/product/init/notifier/navigation_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -14,16 +13,11 @@ class ApplicationProvider {
 
   ApplicationProvider._init();
 
-  List<SingleChildWidget> keys = [
+  List<SingleChildWidget> singleItems = [
     Provider.value(value: NavigationService.instance),
   ];
+
   List<SingleChildWidget> dependItems = [
-    ChangeNotifierProvider(
-      create: (context) => ThemeNotifier(),
-    ),
-    ChangeNotifierProvider(
-      create: (context) => NavigationNotifier(),
-    )
+    ChangeNotifierProvider(create: (context) => ThemeNotifier()),
   ];
-  List<SingleChildWidget> uiChangesItems = [];
 }

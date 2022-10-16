@@ -14,10 +14,10 @@ Future<void> main() async {
   await _init();
   runApp(MultiProvider(
     providers: [
-      ...ApplicationProvider.instance.keys,
+      ...ApplicationProvider.instance.singleItems,
       ...ApplicationProvider.instance.dependItems,
       ...ProductProvider.instance.authItems,
-      //...ProductProvider.instance.uiChangesItems,
+      ...ProductProvider.instance.dependItems,
     ],
     child: EasyLocalization(
       supportedLocales: LanguageManager.instance.supportedLocales,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kampus/view/deneme/view/deneme_view.dart';
-import 'package:kampus/view/deneme2/view/deneme2_view.dart';
+import 'package:kampus/view/pages/profile/view/profile_view.dart';
+import 'package:kampus/view/pages/details/view/details_view.dart';
 
 import '../../../view/root/view/root_view.dart';
 
@@ -16,10 +16,10 @@ class NavigationRoute {
     switch (args.name) {
       case NavigationConstants.DEFAULT:
         return normalNavigate(const RootView(), NavigationConstants.DEFAULT);
-      case NavigationConstants.DENEME:
-        return normalNavigate(const DenemeView(), NavigationConstants.DENEME);
-      case NavigationConstants.DENEME2:
-        return normalNavigate(const Deneme2View(), NavigationConstants.DENEME2);
+      case NavigationConstants.PROFILE:
+        return normalNavigate(const ProfileView(), NavigationConstants.PROFILE);
+      case NavigationConstants.DETAILS:
+        return normalNavigate(const DetailsView(), NavigationConstants.DETAILS);
 
       default:
         return normalNavigate(const RootView(), NavigationConstants.DEFAULT);

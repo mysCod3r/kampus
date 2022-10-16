@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kampus/core/base/base_view.dart';
 
-import '../viewmodel/deneme2_view_model.dart';
+import '../viewmodel/details_view_model.dart';
 
-class Deneme2View extends StatelessWidget {
-  const Deneme2View({super.key});
+class DetailsView extends StatelessWidget {
+  const DetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<Deneme2ViewModel>(
-      viewModel: Deneme2ViewModel(),
+    return BaseView<DetailsViewModel>(
+      viewModel: DetailsViewModel(),
       onModelReady: (model) {
         model.setContext(context);
         model.init();

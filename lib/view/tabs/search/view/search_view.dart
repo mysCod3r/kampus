@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/base/base_view.dart';
+import '../../../../core/base/base_view.dart';
 import '../viewmodel/search_view_model.dart';
 
 class SearchView extends StatelessWidget {
