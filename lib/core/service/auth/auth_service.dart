@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:kampus/product/init/service/i_auth_service.dart';
+import 'package:kampus/core/service/auth/i_auth_service.dart';
+
+import '../../models/firebase_models/auth_error_model.dart';
 
 class AuthService extends IAuthService {
   static final AuthService _instace = AuthService._init();
@@ -15,7 +17,7 @@ class AuthService extends IAuthService {
       return user;
     } on FirebaseAuthException catch (e) {
       print("auth_service.dart ************ \n   $e");
-      return e;
+      return AuthErrorModel(code: e.code, message: e.message);
     }
   }
 
@@ -24,8 +26,14 @@ class AuthService extends IAuthService {
     try {
       var authResult = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return authResult.user != null;
-    } catch (e) {
-      return e;
+    } on FirebaseAuthException catch (e) {
+      print("auth_service.dart ************ \n   $e");
+      return AuthErrorModel(code: e.code, message: e.message);
     }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
   }
 }

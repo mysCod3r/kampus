@@ -20,14 +20,26 @@ class RootView extends StatelessWidget {
           model.setContext(context);
           model.init();
         },
-        onPageBuilder: (context, viewModel) => Scaffold(
-          key: viewModel.scaffoldKey,
-          drawer: _buildDrawer(viewModel),
-          appBar: _buildAppBar(viewModel),
-          body: _buildBody(viewModel),
-          bottomNavigationBar: _buildBottomBar(viewModel, provider),
+        onPageBuilder: (context, viewModel) => Observer(
+          builder: (context) {
+            if (viewModel.isLoading) {
+              return const Center(child: CircularProgressIndicator.adaptive());
+            } else {
+              return _buildScaffold(viewModel, provider);
+            }
+          },
         ),
       ),
+    );
+  }
+
+  Scaffold _buildScaffold(RootViewModel viewModel, NavigationNotifier provider) {
+    return Scaffold(
+      key: viewModel.scaffoldKey,
+      drawer: _buildDrawer(viewModel),
+      appBar: _buildAppBar(viewModel),
+      body: _buildBody(viewModel),
+      bottomNavigationBar: _buildBottomBar(viewModel, provider),
     );
   }
 
@@ -41,8 +53,9 @@ class RootView extends StatelessWidget {
               onPressed: () {
                 viewModel.scaffoldKey.currentState!.closeDrawer();
                 viewModel.navigateToProfile();
+                viewModel.signOut();
               },
-              child: const Text("PROFİLE"),
+              child: Text("${viewModel.currentUser?.name}"),
             ),
           )
         ],

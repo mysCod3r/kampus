@@ -25,6 +25,22 @@ mixin _$RootViewModel on _RootViewModelBase, Store {
     });
   }
 
+  late final _$isLoadingAtom =
+      Atom(name: '_RootViewModelBase.isLoading', context: context);
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   late final _$_RootViewModelBaseActionController =
       ActionController(name: '_RootViewModelBase', context: context);
 
@@ -42,7 +58,8 @@ mixin _$RootViewModel on _RootViewModelBase, Store {
   @override
   String toString() {
     return '''
-currentIndex: ${currentIndex}
+currentIndex: ${currentIndex},
+isLoading: ${isLoading}
     ''';
   }
 }

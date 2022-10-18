@@ -7,14 +7,13 @@ import 'package:mobx/mobx.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../core/init/notifier/scaffold_messenger_key.dart';
 import '../../../../product/constants/firebase_constants.dart';
-import '../../../../product/models/firebase_models/auth_error_model.dart';
-import '../service/signup_service.dart';
+import '../../../../core/models/firebase_models/auth_error_model.dart';
 part 'signup_view_model.g.dart';
 
 class SignupViewModel = SignupViewModelBase with _$SignupViewModel;
 
 abstract class SignupViewModelBase with Store, BaseViewModel {
-  late final SignupService signupService;
+  // late final SignupService signupService;
   late final GlobalKey<FormState> formState;
   late final ScaffoldMessengerKey? scaffoldState;
   late final TextEditingController emailController;
@@ -24,7 +23,7 @@ abstract class SignupViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    signupService = SignupService();
+    // signupService = SignupService();
     formState = GlobalKey();
     scaffoldState = ScaffoldMessengerKey.instance;
     emailController = TextEditingController();
@@ -35,7 +34,7 @@ abstract class SignupViewModelBase with Store, BaseViewModel {
   Future<void> signup() async {
     isLoadingChange();
     if (formState.currentState!.validate()) {
-      var response = await signupService.signinWithEmail(email: emailController.text, password: passwordController.text);
+      var response = await authService.signUpWithEmail(email: emailController.text, password: passwordController.text);
       if (response is UserCredential) print("KAYIT OLUŞTU"); // TODO KAYIT SAYFASINA GİT
       if (response is AuthErrorModel) {
         switch (response.code) {
