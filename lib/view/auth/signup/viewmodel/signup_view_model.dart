@@ -1,22 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kampus/core/extension/context_extension.dart';
-import 'package:kampus/view/auth/login/service/login_service.dart';
+import 'package:kampus/core/base/base_view_model.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../core/base/base_view_model.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../core/init/notifier/scaffold_messenger_key.dart';
 import '../../../../product/constants/firebase_constants.dart';
 import '../../../../product/models/firebase_models/auth_error_model.dart';
+import '../service/signup_service.dart';
+part 'signup_view_model.g.dart';
 
-part 'login_view_model.g.dart';
+class SignupViewModel = SignupViewModelBase with _$SignupViewModel;
 
-class LoginViewModel = LoginViewModelBase with _$LoginViewModel;
-
-abstract class LoginViewModelBase with Store, BaseViewModel {
-  late final LoginService loginService;
+abstract class SignupViewModelBase with Store, BaseViewModel {
+  late final SignupService signupService;
   late final GlobalKey<FormState> formState;
   late final ScaffoldMessengerKey? scaffoldState;
   late final TextEditingController emailController;
@@ -26,7 +24,7 @@ abstract class LoginViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    loginService = LoginService();
+    signupService = SignupService();
     formState = GlobalKey();
     scaffoldState = ScaffoldMessengerKey.instance;
     emailController = TextEditingController();
@@ -34,21 +32,21 @@ abstract class LoginViewModelBase with Store, BaseViewModel {
   }
 
   @action
-  Future<void> login() async {
+  Future<void> signup() async {
     isLoadingChange();
     if (formState.currentState!.validate()) {
-      var response = await loginService.loginWithEmail(email: emailController.text, password: passwordController.text);
-      if (response is UserCredential) print("ana sayfaya git"); // TODO ANASAYFAYA GİT
+      var response = await signupService.signinWithEmail(email: emailController.text, password: passwordController.text);
+      if (response is UserCredential) print("KAYIT OLUŞTU"); // TODO KAYIT SAYFASINA GİT
       if (response is AuthErrorModel) {
         switch (response.code) {
-          case FirebaseAuthExceptions.userNotFound:
-            scaffoldState!.showSnackBar(text: LocaleKeys.errorMessages_userNotfound.tr());
+          case FirebaseAuthExceptions.emailAlreadyInUse:
+            scaffoldState!.showSnackBar(text: LocaleKeys.errorMessages_emailAlreadyInUse.tr());
             break;
-          case FirebaseAuthExceptions.wrongPassword:
-            scaffoldState!.showSnackBar(text: LocaleKeys.errorMessages_wrongPassword.tr(), keyboardPositon: contextt!.mediaQuery.viewInsets.bottom);
+          case FirebaseAuthExceptions.invalidEmail:
+            scaffoldState!.showSnackBar(text: LocaleKeys.errorMessages_invalidEmail.tr());
             break;
-          case FirebaseAuthExceptions.tooManyRequest:
-            scaffoldState!.showSnackBar(text: LocaleKeys.errorMessages_tooManyRequest.tr(), keyboardPositon: contextt!.mediaQuery.viewInsets.bottom);
+          case FirebaseAuthExceptions.weakPassword:
+            scaffoldState!.showSnackBar(text: LocaleKeys.errorMessages_weakPassword.tr());
             break;
           default:
             // TODO BİR HATA OLUŞTU LÜTFEN DAHA SONRA TEKRAR DENEYİN (LOADİNG SAYFASI)
@@ -58,8 +56,6 @@ abstract class LoginViewModelBase with Store, BaseViewModel {
     }
     isLoadingChange();
   }
-
-  // TODO REMEMBER ME BUTONU YAPILACAK
 
   @observable
   bool isLoading = false;

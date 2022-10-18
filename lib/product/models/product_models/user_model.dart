@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirebaseUserModel {
+class UserModel {
   final String? name;
   final String? userName;
   final String? email;
@@ -11,7 +11,7 @@ class FirebaseUserModel {
   final List<String>? followersList;
   final List<String>? followingList;
 
-  FirebaseUserModel({
+  UserModel({
     this.name,
     this.userName,
     this.email,
@@ -23,12 +23,12 @@ class FirebaseUserModel {
     this.followingList,
   });
 
-  factory FirebaseUserModel.fromFirestore(
+  factory UserModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
-    return FirebaseUserModel(
+    return UserModel(
       name: data?['name'],
       userName: data?['userName'],
       email: data?['email'],

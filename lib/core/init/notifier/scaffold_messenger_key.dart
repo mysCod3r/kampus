@@ -11,7 +11,7 @@ class ScaffoldMessengerKey {
 
   final GlobalKey<ScaffoldMessengerState> scaffoldState = GlobalKey();
 
-  void showSnackBar({required String text, SnackBarAction? action, VoidCallback? voidCallback}) {
+  void showSnackBar({required String text, SnackBarAction? action, VoidCallback? voidCallback, double? keyboardPositon}) {
     scaffoldState.currentState!.showSnackBar(
       SnackBar(
         content: Text(text),
@@ -20,6 +20,7 @@ class ScaffoldMessengerKey {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
+        margin: keyboardPositon != null ? EdgeInsets.only(bottom: keyboardPositon + 10, left: 10, right: 10) : null,
       ),
     );
   }

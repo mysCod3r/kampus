@@ -20,7 +20,9 @@
         "wrongPassword": "Hatalı Şifre Girdiniz.",
         "tooManyRequest": "Çok fazla hatalı deneme yaptınız.",
         "emptyPassword" : "Şifre boş bırakılamaz.",
-        "invalidEmail" : "Geçersiz mail adresi girdiniz."
+        "emailAlreadyInUse" : "Bu eposta adresi zaten kullanımda.",
+        "invalidEmail" : "Geçersiz mail adresi girdiniz.",
+        "weakPassword" : "Şifren en az 8 karakter olmalı. Lütfen daha uzun bir şifre gir."
 
     }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../_product/_constants/image_path_svg.dart';
+import '../../../../product/constants/image_path_svg.dart';
 import '../model/onboard_model.dart';
 
 class OnboardViewModel extends ChangeNotifier {

@@ -4,7 +4,7 @@ import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_route.dart';
 import 'package:kampus/core/init/notifier/scaffold_messenger_key.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
-import 'package:kampus/view/auth/login/view/login_view.dart';
+import 'package:kampus/view/auth/auth_builder.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
-      home: const LoginView(),
+      home: const AuthBuilder(),
     );
   }
 }

@@ -18,7 +18,9 @@ abstract class  LocaleKeys {
   static const errorMessages_wrongPassword = 'errorMessages.wrongPassword';
   static const errorMessages_tooManyRequest = 'errorMessages.tooManyRequest';
   static const errorMessages_emptyPassword = 'errorMessages.emptyPassword';
+  static const errorMessages_emailAlreadyInUse = 'errorMessages.emailAlreadyInUse';
   static const errorMessages_invalidEmail = 'errorMessages.invalidEmail';
+  static const errorMessages_weakPassword = 'errorMessages.weakPassword';
   static const errorMessages = 'errorMessages';
 
 }

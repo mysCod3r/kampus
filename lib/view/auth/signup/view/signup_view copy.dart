@@ -4,13 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kampus/core/constants/color_constant.dart';
 import 'package:kampus/core/extension/context_extension.dart';
 import 'package:kampus/core/init/lang/locale_keys.g.dart';
-import 'package:kampus/view/_product/_constants/image_path_svg.dart';
-import 'package:provider/provider.dart';
+import 'package:kampus/product/constants/image_path_svg.dart';
 
-import '../viewmodel/signin_view_model.dart';
-
-class SigninView extends StatelessWidget {
-  const SigninView({super.key});
+class SignupViewCopy extends StatelessWidget {
+  const SignupViewCopy({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +61,7 @@ class SigninView extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(labelText: LocaleKeys.signin_email.tr()),
       onChanged: (value) {
-        context.read<SigninViewModel>().emailController.text = value;
+        // context.read<SigninViewModel>().emailController.text = value;
       },
     );
   }
@@ -75,33 +72,20 @@ class SigninView extends StatelessWidget {
         labelText: LocaleKeys.signin_password.tr(),
         suffixIcon: const Icon(Icons.remove_red_eye_outlined),
       ),
-      onChanged: (value) {
-        context.read<SigninViewModel>().passwordController.text = value;
-      },
+      onChanged: (value) {},
     );
   }
 
   ElevatedButton _signupButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        String password = context.read<SigninViewModel>().passwordController.text;
-        String email = context.read<SigninViewModel>().emailController.text;
-
-        var response = context.read<SigninViewModel>().signUp(email: email, password: password);
-
-        print("email = $email");
-        print("password = $password");
-        print(response);
-      },
+      onPressed: () {},
       child: Center(child: Text(LocaleKeys.signin_signin.tr())),
     );
   }
 
   TextButton _loginButton(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        context.read<SigninViewModel>().navigateToLogin();
-      },
+      onPressed: () {},
       child: Text(LocaleKeys.signin_login.tr()),
     );
   }
