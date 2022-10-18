@@ -13,7 +13,8 @@ class AuthService extends IAuthService {
     try {
       UserCredential user = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       return user;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      print("auth_service.dart ************ \n   $e");
       return e;
     }
   }

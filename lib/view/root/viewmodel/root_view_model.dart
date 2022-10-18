@@ -12,9 +12,9 @@ import '../model/root_item_model.dart';
 
 part 'root_view_model.g.dart';
 
-class RootViewModel = RootViewModelBase with _$RootViewModel;
+class RootViewModel = _RootViewModelBase with _$RootViewModel;
 
-abstract class RootViewModelBase with Store, BaseViewModel {
+abstract class _RootViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => contextt = context;
 

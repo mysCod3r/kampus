@@ -13,6 +13,16 @@
         "login": "Already have account? LOG IN",
         "password": "   Password   ",
         "email": "   Email   "   
+    },
+    "errorMessages":{
+        "userNotfound": "User Not found.",
+        "wrongPassword": "Wrong password, try again.",
+        "tooManyRequest": "You made too many false requests.",
+        "emptyPassword" : "Password cannot be empty.",
+        "invalidEmail" : "You entered an invalid email address."
+
+
+
     }
 
 }

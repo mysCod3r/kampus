@@ -27,6 +27,8 @@ dependencies:
   firebase_core: ^1.24.0
   firebase_auth: ^3.11.2
   firebase_analytics: ^9.3.8
+  firebase_storage: ^10.3.11
+  cloud_firestore: ^3.5.1
 
   #ui utilities
   flutter_svg: ^1.1.5
@@ -56,5 +58,5 @@ flutter:
 
   assets:
     - assets/translations/
-    - assets/images/
+    - assets/icon/
     - assets/svg/

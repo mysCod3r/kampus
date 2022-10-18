@@ -13,5 +13,14 @@
         "login": "Zaten bir hesabın var mı? GİRİŞ YAP",
         "password": "   Şifre   ",
         "email": "   Email   "   
+    },
+
+    "errorMessages":{
+        "userNotfound": "Kullanıcı bulunamadı.",
+        "wrongPassword": "Hatalı Şifre Girdiniz.",
+        "tooManyRequest": "Çok fazla hatalı deneme yaptınız.",
+        "emptyPassword" : "Şifre boş bırakılamaz.",
+        "invalidEmail" : "Geçersiz mail adresi girdiniz."
+
     }
 }

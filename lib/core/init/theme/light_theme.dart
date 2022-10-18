@@ -1,5 +1,3 @@
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 
 import '../../constants/color_constant.dart';
@@ -13,6 +11,7 @@ class LightTheme {
     theme = ThemeData(
       scaffoldBackgroundColor: _lightColor._white,
       errorColor: _lightColor._red,
+      brightness: Brightness.light,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: _lightColor._purple_1,
@@ -52,18 +51,25 @@ class LightTheme {
         filled: true,
         iconColor: _lightColor._purple_1,
         labelStyle: TextStyle(color: _lightColor._grey_2),
-        errorStyle: TextStyle(color: _lightColor._red, decorationColor: _lightColor._red),
+        errorStyle: TextStyle(
+          color: _lightColor._red,
+          decorationColor: _lightColor._red,
+        ),
         hintStyle: TextStyle(color: _lightColor._red),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 3, color: _lightColor._purple_1),
           borderRadius: BorderRadius.circular(30),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: 2, color: _lightColor._purple_2),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 3, color: _lightColor._red),
           borderRadius: BorderRadius.circular(30),
         ),
-        errorBorder: OutlineInputBorder(
+        focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 4, color: _lightColor._red),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: _lightColor._purple_2),
           borderRadius: BorderRadius.circular(30),
         ),
         disabledBorder: OutlineInputBorder(
@@ -77,6 +83,20 @@ class LightTheme {
           disabledForegroundColor: _lightColor._grey_3,
           foregroundColor: _lightColor._purple_1,
         ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: _lightColor._purple_1,
+        behavior: SnackBarBehavior.floating,
+        elevation: 30,
+        actionTextColor: _lightColor._white,
+        contentTextStyle: TextStyle(
+          fontStyle: FontStyle.italic,
+          color: _lightColor._white,
+          overflow: TextOverflow.clip,
+        ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: _lightColor._white,
       ),
     );
   }
@@ -93,5 +113,6 @@ class _LightColor {
   final Color _grey_1 = ColorConstants.GREY_1;
   final Color _grey_2 = ColorConstants.GREY_2;
   final Color _grey_3 = ColorConstants.GREY_3;
+  // ignore: unused_field
   final Color _grey_4 = ColorConstants.GREY_4;
 }
