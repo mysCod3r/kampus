@@ -54,13 +54,17 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
   }
 
   Future<bool> onWillPop() async {
-    final isFirstRouteInCurrentTab = !await Navigator.maybePop(contextt!);
-    if (isFirstRouteInCurrentTab) {
-      if (1 != 0) {
+    final currentState = keys[currentIndex].currentState;
+    if (currentState?.canPop() ?? false) {
+      currentState!.pop();
+      return false;
+    } else {
+      if (currentIndex != 0) {
+        currentIndex = 0;
         return false;
       }
+      return true;
     }
-    return isFirstRouteInCurrentTab;
   }
 
   void navigateToProfile() {
