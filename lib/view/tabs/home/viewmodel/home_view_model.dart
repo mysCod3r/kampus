@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:kampus/core/constants/navigation_constants.dart';
+import 'package:kampus/core/base/base_view_model.dart';
 import 'package:mobx/mobx.dart';
-import '../../../../core/base/base_view_model.dart';
 
-class HomeViewModel with Store, BaseViewModel {
-  late GlobalKey<NavigatorState> myNavigatorKey;
+import '../../../../core/constants/navigation_constants.dart';
+
+part 'home_view_model.g.dart';
+
+class HomeViewModel = HomeViewModelBase with _$HomeViewModel;
+
+abstract class HomeViewModelBase with Store, BaseViewModel {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
   void setContext(BuildContext context) => contextt = context;

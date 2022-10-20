@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kampus/product/widget/appbar/custom_app_bar.dart';
 import '../../../../core/base/base_view.dart';
 import '../viewmodel/notifications_view_model.dart';
 
@@ -14,6 +15,7 @@ class NotificationsView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (context, viewModel) => Scaffold(
+        appBar: const CustomAppBar(),
         body: Center(
           child: Text(ModalRoute.of(context)!.settings.name!),
         ),

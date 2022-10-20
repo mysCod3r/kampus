@@ -3,6 +3,7 @@ import 'package:kampus/product/init/notifier/navigation_notifier.dart';
 import 'package:kampus/view/tabs/home/viewmodel/home_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/base/base_view.dart';
+import '../../../../product/widget/appbar/custom_app_bar.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,6 +18,9 @@ class HomeView extends StatelessWidget {
           model.init();
         },
         onPageBuilder: (context, viewModel) => Scaffold(
+          key: viewModel.scaffoldKey,
+          appBar: CustomAppBar(scaffoldKey: viewModel.scaffoldKey),
+          drawer: const Drawer(),
           body: Center(
             child: TextButton(
               onPressed: () {

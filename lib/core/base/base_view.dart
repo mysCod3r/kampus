@@ -13,7 +13,7 @@ class BaseView<T extends Store> extends StatefulWidget {
   _BaseViewState<T> createState() => _BaseViewState<T>();
 }
 
-class _BaseViewState<T extends Store> extends State<BaseView<T>> {
+class _BaseViewState<T extends Store> extends State<BaseView<T>> with AutomaticKeepAliveClientMixin {
   late T model;
 
   @override
@@ -31,6 +31,10 @@ class _BaseViewState<T extends Store> extends State<BaseView<T>> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return widget.onPageBuilder(context, model);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

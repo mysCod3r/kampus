@@ -26,6 +26,7 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
 
   // final FirestoreService _firestoreService = FirestoreService.instance;
   UserModel? currentUser;
+  final PageController pageController = PageController();
 
   @override
   void init() {
@@ -51,6 +52,7 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
   @action
   void setCurrentIndex(int index) {
     currentIndex = index;
+    pageController.jumpToPage(index);
   }
 
   Future<bool> onWillPop() async {
@@ -60,7 +62,7 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
       return false;
     } else {
       if (currentIndex != 0) {
-        currentIndex = 0;
+        setCurrentIndex(0);
         return false;
       }
       return true;

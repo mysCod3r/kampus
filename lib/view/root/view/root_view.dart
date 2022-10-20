@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kampus/core/constants/navigation_constants.dart';
@@ -17,18 +19,27 @@ class RootView extends StatelessWidget {
       builder: (context, provider, child) => BaseView<RootViewModel>(
         viewModel: RootViewModel(),
         onModelReady: (model) {
+          log("RootView: onModelReady");
           model.setContext(context);
           model.init();
         },
-        onPageBuilder: (context, viewModel) => Observer(
-          builder: (context) {
-            if (viewModel.isLoading) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            } else {
-              return _buildScaffold(viewModel, provider);
-            }
-          },
-        ),
+        onDispose: () {
+          log("RootView: onDispose");
+        },
+        onPageBuilder: (context, viewModel) {
+          log("RootView: build");
+
+          log("RootView: onPageBuilder");
+          return Observer(
+            builder: (context) {
+              if (viewModel.isLoading) {
+                return const Center(child: CircularProgressIndicator.adaptive());
+              } else {
+                return _buildScaffold(viewModel, provider);
+              }
+            },
+          );
+        },
       ),
     );
   }
@@ -36,8 +47,8 @@ class RootView extends StatelessWidget {
   Scaffold _buildScaffold(RootViewModel viewModel, NavigationNotifier provider) {
     return Scaffold(
       key: viewModel.scaffoldKey,
-      drawer: _buildDrawer(viewModel),
-      appBar: _buildAppBar(viewModel),
+      //drawer: _buildDrawer(viewModel),
+      // appBar: _buildAppBar(viewModel),
       body: _buildBody(viewModel),
       bottomNavigationBar: _buildBottomBar(viewModel, provider),
     );
@@ -98,33 +109,57 @@ class RootView extends StatelessWidget {
                   : const Icon(Icons.message_outlined))
         ],
         onTap: (value) {
-          viewModel.currentIndex = value;
+          viewModel.setCurrentIndex(value);
           provider.currentIndex = value;
         },
       );
     });
   }
 
-  Observer _buildBody(RootViewModel viewModel) {
-    return Observer(builder: (_) {
-      return WillPopScope(
-        onWillPop: () => viewModel.onWillPop(),
-        child: SafeArea(
-          child: IndexedStack(
-            index: viewModel.currentIndex,
-            children: viewModel.tabPages
-                .map((page) => Navigator(
-                      key: page.navigatorkey,
-                      onGenerateRoute: NavigationRoute.instance.generateRoute,
-                      onGenerateInitialRoutes: (navigator, _) {
-                        return [MaterialPageRoute(builder: (_) => page.tab, settings: RouteSettings(name: page.title))];
-                      },
-                    ))
-                .toList(),
-          ),
-        ),
-      );
-    });
+  Widget _buildBody(RootViewModel viewModel) {
+    return WillPopScope(
+      onWillPop: () => viewModel.onWillPop(),
+      child: SafeArea(
+        child: _listViewBuilder(viewModel),
+      ),
+    );
+  }
+
+  // IndexedStack _indexedStack(RootViewModel viewModel) {
+  //   return IndexedStack(
+  //     index: viewModel.currentIndex,
+  //     children: viewModel.tabPages
+  //         .map((page) => Navigator(
+  //               key: page.navigatorkey,
+  //               onGenerateRoute: NavigationRoute.instance.generateRoute,
+  //               onGenerateInitialRoutes: (navigator, _) {
+  //                 return [MaterialPageRoute(builder: (_) => page.tab, settings: RouteSettings(name: page.title))];
+  //               },
+  //             ))
+  //         .toList(),
+  //   );
+  // }
+
+  Widget _listViewBuilder(RootViewModel viewModel) {
+    return PageView.builder(
+      itemCount: viewModel.tabPages.length,
+      physics: const NeverScrollableScrollPhysics(),
+      controller: viewModel.pageController,
+      itemBuilder: (context, index) {
+        return Navigator(
+          key: viewModel.tabPages[index].navigatorkey,
+          onGenerateRoute: NavigationRoute.instance.generateRoute,
+          onGenerateInitialRoutes: (navigator, initialRoute) {
+            return [
+              MaterialPageRoute(
+                builder: (_) => viewModel.tabPages[index].tab,
+                settings: RouteSettings(name: viewModel.tabPages[index].title),
+              ),
+            ];
+          },
+        );
+      },
+    );
   }
 
   AppBar _buildAppBar(RootViewModel viewModel) {
