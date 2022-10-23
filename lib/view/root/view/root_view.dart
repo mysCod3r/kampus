@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kampus/core/constants/navigation_constants.dart';
+import 'package:kampus/core/extension/context_extension.dart';
 import 'package:kampus/product/init/notifier/navigation_notifier.dart';
+import 'package:kampus/product/widget/drawer/view/drawer_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/base/base_view.dart';
@@ -35,7 +37,7 @@ class RootView extends StatelessWidget {
               if (viewModel.isLoading) {
                 return const Center(child: CircularProgressIndicator.adaptive());
               } else {
-                return _buildScaffold(viewModel, provider);
+                return _buildScaffold(viewModel, provider, context);
               }
             },
           );
@@ -44,33 +46,14 @@ class RootView extends StatelessWidget {
     );
   }
 
-  Scaffold _buildScaffold(RootViewModel viewModel, NavigationNotifier provider) {
+  Scaffold _buildScaffold(RootViewModel viewModel, NavigationNotifier provider, BuildContext context) {
     return Scaffold(
       key: viewModel.scaffoldKey,
       //drawer: _buildDrawer(viewModel),
       // appBar: _buildAppBar(viewModel),
-      body: _buildBody(viewModel),
+      // body: _buildBody(viewModel),
+      body: _buildBody(viewModel, context),
       bottomNavigationBar: _buildBottomBar(viewModel, provider),
-    );
-  }
-
-  Drawer _buildDrawer(RootViewModel viewModel) {
-    return Drawer(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: TextButton(
-              onPressed: () {
-                viewModel.scaffoldKey.currentState!.closeDrawer();
-                viewModel.navigateToProfile();
-                viewModel.signOut();
-              },
-              child: Text("${viewModel.currentUser?.name}"),
-            ),
-          )
-        ],
-      ),
     );
   }
 
@@ -109,6 +92,7 @@ class RootView extends StatelessWidget {
                   : const Icon(Icons.message_outlined))
         ],
         onTap: (value) {
+          // viewModel.authService.loginWithEmail(email: "a@a.edu.tr", password: "admin123");
           viewModel.setCurrentIndex(value);
           provider.currentIndex = value;
         },
@@ -116,14 +100,33 @@ class RootView extends StatelessWidget {
     });
   }
 
-  Widget _buildBody(RootViewModel viewModel) {
+// SAVE
+  Widget _buildBody(RootViewModel viewModel, BuildContext context) {
     return WillPopScope(
       onWillPop: () => viewModel.onWillPop(),
-      child: SafeArea(
-        child: _listViewBuilder(viewModel),
+      child: Stack(
+        children: [
+          _listViewBuilder(viewModel),
+          _buildDrawer(viewModel, context),
+        ],
       ),
     );
   }
+
+// TODO:   ÇALIŞMASINDA SORUN YOK. BACK UP ALINDIKTAN SONRA DRAWER TÜM TABLERDE ÇAĞRILACAK
+//  TABLERİN VİEWMODELLERİ ROOTVİEW DEN EXTEND EDİLİP KODLAR TEMİZLENECEK
+//
+  Widget _buildDrawer(RootViewModel viewModel, BuildContext context) => Observer(
+        builder: (_) => GestureDetector(
+          onHorizontalDragUpdate: (details) => viewModel.onHorizontalDragUpdate(details),
+          onHorizontalDragEnd: (details) => viewModel.onHorizontalDragEnd(details),
+          child: AnimatedContainer(
+            duration: context.lowDuration,
+            transform: Matrix4.translationValues(viewModel.xOffset - viewModel.drawerMaxWidth, 0, 0),
+            child: DrawerView(width: viewModel.drawerMaxWidth),
+          ),
+        ),
+      );
 
   // IndexedStack _indexedStack(RootViewModel viewModel) {
   //   return IndexedStack(

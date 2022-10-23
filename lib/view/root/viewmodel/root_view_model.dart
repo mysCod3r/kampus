@@ -16,6 +16,8 @@ part 'root_view_model.g.dart';
 class RootViewModel = _RootViewModelBase with _$RootViewModel;
 
 abstract class _RootViewModelBase with Store, BaseViewModel {
+  final double drawerMaxWidth = 300;
+
   @override
   void setContext(BuildContext context) => contextt = context;
 
@@ -42,8 +44,10 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
   }
 
   Future<void> fetchCurrentUser() async {
+    changeLoading();
+    await authService.loginWithEmail(email: "a@a.edu.tr", password: "admin123");
     currentUser = await firestoreService.getCurrentUserData();
-    isLoading = false;
+    changeLoading();
   }
 
   @observable
@@ -69,14 +73,50 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
     }
   }
 
-  void navigateToProfile() {
-    navigation.navigateToPage(navigatorKey: keys[currentIndex], path: NavigationConstants.PROFILE);
-  }
-
   void signOut() {
     authService.signOut();
   }
 
   @observable
-  bool isLoading = true;
+  double xOffset = 0;
+
+  @observable
+  bool isOpenDrawer = false;
+
+  @observable
+  bool isLoading = false;
+
+  @action
+  void onHorizontalDragUpdate(DragUpdateDetails details) {
+    if (xOffset > drawerMaxWidth || xOffset < 0) return;
+    if (details.delta.dx > 0.5) {
+      xOffset = xOffset + 1;
+      isOpenDrawer = true;
+    } else if (details.delta.dx < 0.5) {
+      xOffset = xOffset - 1;
+      isOpenDrawer = false;
+    }
+  }
+
+  @action
+  void onHorizontalDragEnd(DragEndDetails details) {
+    isOpenDrawer ? xOffset = drawerMaxWidth : xOffset = 0;
+  }
+
+  @action
+  void onTap() {
+    isOpenDrawer = false;
+    xOffset = 0;
+  }
+
+  @action
+  void openDrawer() {
+    isOpenDrawer = true;
+    xOffset = drawerMaxWidth;
+  }
+
+  @action
+  void changeLoading() {
+    isLoading = !isLoading;
+  }
 }
