@@ -1,6 +1,15 @@
 {
     "current": "English",
     "welcome": "Welcome to Kampus",
+
+    "drawer":{
+        "settings": "Settings and Privacy",
+        "following": "Following",
+        "followers": "Followers",
+        "bookmarks": "Bookmarks",
+        "help": "Help Center"
+    },
+
     "login":{
         "login": "LOG IN",
         "signup": "Don't have account? SIGN UP",

@@ -3,8 +3,9 @@
 class NavigationConstants {
   NavigationConstants._init();
   static const DEFAULT = '/';
-  // ---- TAB --- //
   static const ROOT = '/root';
+
+  // ---- TAB --- //
   static const HOME = '/home';
   static const SEARCH = '/search';
   static const NOTIFICATIONS = '/notifications';
@@ -18,4 +19,13 @@ class NavigationConstants {
   // --- CONTENT --- //
   static const PROFILE = '/profile';
   static const DETAILS = '/details';
+
+  // --- DRAWER --- //
+
+  static const SETTINGS = '/settings';
+  static const FOLLOWING = '/following';
+  static const FOLLOWERS = '/followers';
+
+  static const BOOKMARKS = '/bookmarks';
+  static const HELP = '/help';
 }

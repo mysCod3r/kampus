@@ -80,6 +80,7 @@ class LightTheme {
       iconTheme: IconThemeData(color: _lightColor._purple_1),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
           disabledForegroundColor: _lightColor._grey_3,
           foregroundColor: _lightColor._purple_1,
         ),

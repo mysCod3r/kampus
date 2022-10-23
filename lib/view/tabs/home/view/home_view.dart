@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
         onPageBuilder: (context, viewModel) => Scaffold(
           key: viewModel.scaffoldKey,
           appBar: CustomAppBar(scaffoldKey: viewModel.scaffoldKey),
-          drawer: const Drawer(),
+          // drawer: const Drawer(),
           body: Center(
             child: TextButton(
               onPressed: () {

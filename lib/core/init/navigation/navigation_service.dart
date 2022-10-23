@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kampus/core/init/navigation/i_navigation_service.dart';
 
-class NavigationService {
+class NavigationService extends INavigationService {
   static final NavigationService _instance = NavigationService._init();
   static NavigationService get instance => _instance;
 
@@ -27,8 +28,7 @@ class NavigationService {
   }
 
   @override
-  Future<void> navigateToPageReplace({String? path, Object? data, int? tabIndex}) {
-    // TODO: implement navigateToPageReplace
+  Future<void> navigateToPageReplace({required GlobalKey<NavigatorState> navigatorKey, required String path, Object? data}) {
     throw UnimplementedError();
   }
 }

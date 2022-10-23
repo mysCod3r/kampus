@@ -25,6 +25,38 @@ mixin _$RootViewModel on _RootViewModelBase, Store {
     });
   }
 
+  late final _$xOffsetAtom =
+      Atom(name: '_RootViewModelBase.xOffset', context: context);
+
+  @override
+  double get xOffset {
+    _$xOffsetAtom.reportRead();
+    return super.xOffset;
+  }
+
+  @override
+  set xOffset(double value) {
+    _$xOffsetAtom.reportWrite(value, super.xOffset, () {
+      super.xOffset = value;
+    });
+  }
+
+  late final _$isOpenDrawerAtom =
+      Atom(name: '_RootViewModelBase.isOpenDrawer', context: context);
+
+  @override
+  bool get isOpenDrawer {
+    _$isOpenDrawerAtom.reportRead();
+    return super.isOpenDrawer;
+  }
+
+  @override
+  set isOpenDrawer(bool value) {
+    _$isOpenDrawerAtom.reportWrite(value, super.isOpenDrawer, () {
+      super.isOpenDrawer = value;
+    });
+  }
+
   late final _$isLoadingAtom =
       Atom(name: '_RootViewModelBase.isLoading', context: context);
 
@@ -56,9 +88,66 @@ mixin _$RootViewModel on _RootViewModelBase, Store {
   }
 
   @override
+  void onHorizontalDragUpdate(DragUpdateDetails details) {
+    final _$actionInfo = _$_RootViewModelBaseActionController.startAction(
+        name: '_RootViewModelBase.onHorizontalDragUpdate');
+    try {
+      return super.onHorizontalDragUpdate(details);
+    } finally {
+      _$_RootViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void onHorizontalDragEnd(DragEndDetails details) {
+    final _$actionInfo = _$_RootViewModelBaseActionController.startAction(
+        name: '_RootViewModelBase.onHorizontalDragEnd');
+    try {
+      return super.onHorizontalDragEnd(details);
+    } finally {
+      _$_RootViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void onTap() {
+    final _$actionInfo = _$_RootViewModelBaseActionController.startAction(
+        name: '_RootViewModelBase.onTap');
+    try {
+      return super.onTap();
+    } finally {
+      _$_RootViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void openDrawer() {
+    final _$actionInfo = _$_RootViewModelBaseActionController.startAction(
+        name: '_RootViewModelBase.openDrawer');
+    try {
+      return super.openDrawer();
+    } finally {
+      _$_RootViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeLoading() {
+    final _$actionInfo = _$_RootViewModelBaseActionController.startAction(
+        name: '_RootViewModelBase.changeLoading');
+    try {
+      return super.changeLoading();
+    } finally {
+      _$_RootViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentIndex: ${currentIndex},
+xOffset: ${xOffset},
+isOpenDrawer: ${isOpenDrawer},
 isLoading: ${isLoading}
     ''';
   }
