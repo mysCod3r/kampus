@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kampus/product/init/notifier/navigation_notifier.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/base/base_view.dart';
-import '../../../../product/widget/appbar/custom_app_bar.dart';
 import '../viewmodel/messages_view_model.dart';
 
 class MessagesView extends StatelessWidget {
@@ -17,13 +16,10 @@ class MessagesView extends StatelessWidget {
           model.setContext(context);
           model.init();
         },
-        onPageBuilder: (context, viewModel) => Scaffold(
-          appBar: const CustomAppBar(),
-          body: Center(
-            child: TextButton(
-              onPressed: () {},
-              child: const Text("Profile git"),
-            ),
+        onPageBuilder: (context, viewModel) => Center(
+          child: TextButton(
+            onPressed: () {},
+            child: const Text("Profile git"),
           ),
         ),
       ),

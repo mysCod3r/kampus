@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kampus/core/constants/navigation_constants.dart';
-import 'package:kampus/product/init/notifier/navigation_notifier.dart';
 import 'package:kampus/product/models/product_models/user_model.dart';
 import 'package:kampus/view/tabs/home/view/home_view.dart';
 import 'package:kampus/view/tabs/messages/view/messages_view.dart';
@@ -9,6 +8,7 @@ import 'package:kampus/view/tabs/search/view/search_view.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import '../../../core/base/base_view_model.dart';
+import '../../../product/init/notifier/navigation_notifier.dart';
 import '../model/root_item_model.dart';
 
 part 'root_view_model.g.dart';
@@ -16,22 +16,20 @@ part 'root_view_model.g.dart';
 class RootViewModel = _RootViewModelBase with _$RootViewModel;
 
 abstract class _RootViewModelBase with Store, BaseViewModel {
-  final double drawerMaxWidth = 300;
-
   @override
   void setContext(BuildContext context) => contextt = context;
 
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  late List tabPages = [];
 
-  List<GlobalKey<NavigatorState>> keys = [];
-  List tabPages = [];
-
-  // final FirestoreService _firestoreService = FirestoreService.instance;
   UserModel? currentUser;
   final PageController pageController = PageController();
+  final double drawerMaxWidth = 300;
+  late final List keys;
 
   @override
   void init() {
+    WidgetsFlutterBinding.ensureInitialized();
+
     keys = [...contextt!.read<NavigationNotifier>().navigatorKeys];
 
     tabPages = [
@@ -48,6 +46,11 @@ abstract class _RootViewModelBase with Store, BaseViewModel {
     await authService.loginWithEmail(email: "a@a.edu.tr", password: "admin123");
     currentUser = await firestoreService.getCurrentUserData();
     changeLoading();
+  }
+
+  void navigateTo(String path) {
+    navigation.navigateToPage(navigatorKey: keys[currentIndex], path: path);
+    if (isOpenDrawer) xOffset = 0;
   }
 
   @observable
