@@ -1,6 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: constant_identifier_names
 
-import '../../../product/models/product_models/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kampus/product/models/post/post_model.dart';
+
+import '../../../product/models/user/user_model.dart';
 import '../auth/auth_service.dart';
 
 class FirestoreService {
@@ -11,22 +14,25 @@ class FirestoreService {
 
   final FirebaseFirestore firestoreService = FirebaseFirestore.instance;
   final AuthService _authService = AuthService.instance;
-  DocumentReference<UserModel>? currentUser;
 
-  CollectionReference<Map<String, dynamic>> userDb() {
-    return firestoreService.collection(FirestoreDbNames.users.name);
+  CollectionReference<UserModel> userDb() {
+    return firestoreService.collection(FirestoreDbNames.users.name).withConverter(
+          fromFirestore: (snapshot, _) => UserModel.fromFirestore(snapshot, _),
+          toFirestore: (user, _) => user.toFirestore(),
+        );
+  }
+
+  CollectionReference<PostModel> postsDb() {
+    return firestoreService.collection(FirestoreDbNames.posts.name).withConverter(
+          fromFirestore: (snapshot, _) => PostModel.fromFirestore(snapshot, _),
+          toFirestore: (post, _) => post.toFirestore(),
+        );
   }
 
   Future<UserModel?> getCurrentUserData() async {
     if (_authService.firebaseAuth.currentUser != null) {
       String currentUserUid = _authService.firebaseAuth.currentUser!.uid;
-      CollectionReference<Map<String, dynamic>> usersDb = userDb();
-
-      currentUser = usersDb.doc(currentUserUid).withConverter<UserModel>(
-            fromFirestore: (snapshot, _) => UserModel.fromFirestore(snapshot, _),
-            toFirestore: (user, _) => user.toFirestore(),
-          );
-      DocumentSnapshot<UserModel> currentUserSnap = await currentUser!.get();
+      DocumentSnapshot<UserModel>? currentUserSnap = await userDb().doc(currentUserUid).get();
       UserModel? currentUserData = currentUserSnap.data();
       if (currentUserData != null) return currentUserData;
     }

@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kampus/core/extension/context_extension.dart';
-import 'package:kampus/product/models/product_models/user_model.dart';
+import 'package:kampus/product/models/user/user_model.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/base/base_view_model.dart';

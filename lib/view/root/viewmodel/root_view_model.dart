@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kampus/core/constants/navigation_constants.dart';
-import 'package:kampus/product/models/product_models/user_model.dart';
 import 'package:kampus/view/tabs/home/view/home_view.dart';
 import 'package:kampus/view/tabs/messages/view/messages_view.dart';
 import 'package:kampus/view/tabs/notifications/view/notifications_view.dart';
@@ -9,6 +8,7 @@ import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import '../../../core/base/base_view_model.dart';
 import '../../../product/init/notifier/navigation_notifier.dart';
+import '../../../product/models/user/user_model.dart';
 import '../model/root_item_model.dart';
 
 part 'root_view_model.g.dart';
