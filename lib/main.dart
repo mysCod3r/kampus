@@ -2,16 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_route.dart';
+import 'package:kampus/core/init/navigation/services/auth_navigation_service.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'core/init/notifier/provider_notifier.dart';
+import 'product/init/notifier/product_providers.dart';
 
 Future<void> main() async {
   await _init();
   runApp(MultiProvider(
     providers: [
+      ...ApplicationProvider.instance.keys,
       ...ApplicationProvider.instance.dependItems,
+      ...ProductProvider.instance.authItems,
       //...ProductProvider.instance.uiChangesItems,
     ],
     child: EasyLocalization(
@@ -26,6 +32,7 @@ Future<void> main() async {
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 class MyApp extends StatelessWidget {
@@ -40,6 +47,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
+      navigatorKey: AuthNavigationService.instance.navigatorKey,
     );
   }
 }

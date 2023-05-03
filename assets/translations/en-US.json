@@ -1,3 +1,18 @@
 {
-    "current": "English"
+    "current": "English",
+    "welcome": "Welcome to Kampus",
+    "login":{
+        "login": "LOG IN",
+        "signup": "Don't have account? SIGN UP",
+        "forgot": "FORGOT PASSWORD",
+        "password": "   Password   ",
+        "email": "   Email   "
+    },
+    "signin":{
+        "signin": "SIGN IN",
+        "login": "Already have account? LOG IN",
+        "password": "   Password   ",
+        "email": "   Email   "   
+    }
+
 }
