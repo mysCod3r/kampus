@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../product/widget/bottom_navigation/bottom_navigation_widget.dart';
+
 class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key, this.scaffoldKey});
   final GlobalKey<ScaffoldState>? scaffoldKey;

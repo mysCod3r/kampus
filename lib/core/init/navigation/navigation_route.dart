@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kampus/view/auth/login/view/login_view.dart';
-import 'package:kampus/view/auth/signin/view/signin_view.dart';
-import 'package:kampus/view/auth/splash/view/splash_view.dart';
 import 'package:kampus/view/root/view/root_view.dart';
 import 'package:kampus/view/tab/home/view/home_view.dart';
 import 'package:kampus/view/tab/notifications/view/notifications_view.dart';
 import 'package:kampus/view/tab/profile/view/profile_view.dart';
 
-import '../../../view/auth/onboard/view/onboard_view.dart';
 import '../../../view/tab/categories/view/categories_view.dart';
 import '../../../view/test/second_test_view.dart';
 import '../../../view/test/test_view.dart';
@@ -22,26 +18,13 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.DEFAULT:
-        return normalNavigate(const SplashView(), NavigationConstants.DEFAULT);
-
-      case NavigationConstants.ROOT:
-        return normalNavigate(const RootView(), NavigationConstants.ROOT);
-
-      case NavigationConstants.ONBOARD:
-        return normalNavigate(const OnboardView(), NavigationConstants.ONBOARD);
-
-      case NavigationConstants.LOGIN:
-        return normalNavigate(const LoginView(), NavigationConstants.LOGIN);
-      case NavigationConstants.SIGNIN:
-        return normalNavigate(const SigninView(), NavigationConstants.SIGNIN);
+        return normalNavigate(const RootView(), NavigationConstants.DEFAULT);
 
       case NavigationConstants.TEST_VIEW:
         return SlideLeftRoute<bool>(builder: (BuildContext context) => const TestView(), settings: const RouteSettings(name: NavigationConstants.TEST_VIEW));
 
       case NavigationConstants.SECOND_TEST_VIEW:
         return normalNavigate(const SecondTestView(), NavigationConstants.SECOND_TEST_VIEW);
-
-      // TAB SCREEN
       case NavigationConstants.HOME:
         return normalNavigate(const HomeView(), NavigationConstants.HOME);
       case NavigationConstants.CATEGORIES:
@@ -52,7 +35,7 @@ class NavigationRoute {
         return normalNavigate(const ProfileView(), NavigationConstants.PROFILE);
 
       default:
-        return normalNavigate(const SplashView(), NavigationConstants.DEFAULT);
+        return normalNavigate(const RootView(), NavigationConstants.DEFAULT);
     }
   }
 
