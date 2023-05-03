@@ -1,57 +1,95 @@
-import 'package:flutter/material.dart';
-import 'package:kampus/core/init/navigation/navigation_service.dart';
-import 'package:kampus/product/init/notifier/bottom_navigation_bar_notifier.dart';
-import 'package:kampus/product/widget/bottom_navigation/bottom_navigation_widget.dart';
-import 'package:kampus/view/root/model/root_model.dart';
-import 'package:kampus/view/tab/categories/view/categories_view.dart';
-import 'package:kampus/view/tab/notifications/view/notifications_view.dart';
-import 'package:kampus/view/tab/profile/view/profile_view.dart';
+import 'dart:developer';
 
-import '../../../core/init/navigation/navigation_route.dart';
-import '../../tab/home/view/home_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kampus/core/extension/context_extension.dart';
+import 'package:kampus/product/init/notifier/navigation_notifier.dart';
+import 'package:kampus/product/widget/bottom_bar/custom_bottom_bar.dart';
+import 'package:kampus/product/widget/drawer/custom_drawer.dart';
 import 'package:provider/provider.dart';
 
-class RootView extends StatefulWidget {
+import '../../../core/base/base_view.dart';
+import '../../../core/init/navigation/navigation_route.dart';
+import '../viewmodel/root_view_model.dart';
+
+class RootView extends StatelessWidget {
   const RootView({super.key});
 
   @override
-  State<RootView> createState() => _RootViewState();
-}
-
-final GlobalKey<NavigatorState> _tab1navigatorKey = NavigationService.navigatorKeys[0];
-final GlobalKey<NavigatorState> _tab2navigatorKey = NavigationService.navigatorKeys[1];
-final GlobalKey<NavigatorState> _tab3navigatorKey = NavigationService.navigatorKeys[2];
-final GlobalKey<NavigatorState> _tab4navigatorKey = NavigationService.navigatorKeys[3];
-
-final List _pages = [
-  RootModel(tab: const HomeView(), title: "Home", icon: Icons.home_filled, navigatorkey: _tab1navigatorKey),
-  RootModel(tab: const NotificationsView(), title: "not", icon: Icons.abc, navigatorkey: _tab2navigatorKey),
-  RootModel(tab: const CategoriesView(), title: "category", icon: Icons.abc, navigatorkey: _tab3navigatorKey),
-  RootModel(tab: const ProfileView(), title: "profile", icon: Icons.abc, navigatorkey: _tab4navigatorKey),
-];
-
-class _RootViewState extends State<RootView> {
-  @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => NavigationService.instance.onWillPop(
-        tabIndex: context.read<BottomNavigationBarNotifier>().currentIndex,
+    return Consumer<NavigationNotifier>(
+      builder: (context, provider, child) => BaseView<RootViewModel>(
+        viewModel: RootViewModel(),
+        onModelReady: (model) {
+          log("RootView: onModelReady");
+          model.setContext(context);
+          model.init();
+        },
+        onDispose: () {
+          log("RootView: onDispose");
+        },
+        onPageBuilder: (context, viewModel) {
+          log("RootView: onPageBuilder");
+          return Observer(
+            builder: (context) {
+              if (viewModel.isLoading) {
+                return const Center(child: CircularProgressIndicator.adaptive());
+              } else {
+                return Stack(
+                  children: [
+                    _buildScaffold(viewModel, context),
+                    CustomDrawer(viewModel: viewModel),
+                  ],
+                );
+              }
+            },
+          );
+        },
       ),
+    );
+  }
+
+  Widget _buildScaffold(RootViewModel viewModel, BuildContext context) {
+    return AnimatedContainer(
+      duration: context.lowDuration,
+      transform: Matrix4.translationValues(viewModel.xOffset, 0, 0),
       child: Scaffold(
-        body: IndexedStack(
-          index: context.watch<BottomNavigationBarNotifier>().currentIndex,
-          children: _pages
-              .map((page) => Navigator(
-                    key: page.navigatorkey,
-                    onGenerateRoute: NavigationRoute.instance.generateRoute,
-                    onGenerateInitialRoutes: (navigator, initialRoute) {
-                      return [MaterialPageRoute(builder: (context) => page.tab)];
-                    },
-                  ))
-              .toList(),
+        body: WillPopScope(
+          onWillPop: () => viewModel.onWillPop(),
+          child: _listViewBuilder(viewModel),
         ),
-        bottomNavigationBar: const CustomBottomNavigation(),
+        bottomNavigationBar: CustomBottomBar(viewModel: viewModel),
       ),
+    );
+  }
+
+  Widget _listViewBuilder(RootViewModel viewModel) {
+    return PageView.builder(
+      itemCount: viewModel.tabPages.length,
+      physics: const NeverScrollableScrollPhysics(),
+      controller: viewModel.pageController,
+      itemBuilder: (context, index) {
+        return Navigator(
+          key: viewModel.tabPages[index].navigatorkey,
+          onGenerateRoute: NavigationRoute.instance.generateRoute,
+          onGenerateInitialRoutes: (navigator, initialRoute) {
+            return [
+              MaterialPageRoute(
+                builder: (_) => GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => viewModel.onTap(),
+                    onHorizontalDragUpdate: (details) => viewModel.onHorizontalDragUpdate(details),
+                    onHorizontalDragEnd: (details) => viewModel.onHorizontalDragEnd(details),
+                    child: AbsorbPointer(
+                      absorbing: viewModel.isOpenDrawer,
+                      child: viewModel.tabPages[index].tab,
+                    )),
+                settings: RouteSettings(name: viewModel.tabPages[index].title),
+              ),
+            ];
+          },
+        );
+      },
     );
   }
 }

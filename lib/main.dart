@@ -2,17 +2,24 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_route.dart';
+import 'package:kampus/core/init/notifier/scaffold_messenger_key.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
+import 'package:kampus/view/root/view/root_view.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'core/init/notifier/provider_notifier.dart';
+import 'product/init/notifier/product_providers.dart';
 
 Future<void> main() async {
   await _init();
   runApp(MultiProvider(
     providers: [
+      ...ApplicationProvider.instance.singleItems,
       ...ApplicationProvider.instance.dependItems,
-      //...ProductProvider.instance.uiChangesItems,
+      ...ProductProvider.instance.authItems,
+      ...ProductProvider.instance.dependItems,
     ],
     child: EasyLocalization(
       supportedLocales: LanguageManager.instance.supportedLocales,
@@ -26,6 +33,7 @@ Future<void> main() async {
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 class MyApp extends StatelessWidget {
@@ -34,12 +42,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: ScaffoldMessengerKey.instance!.scaffoldState,
       debugShowCheckedModeBanner: false,
       theme: context.watch<ThemeNotifier>().currentTheme,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
+      home: const RootView(),
     );
   }
 }

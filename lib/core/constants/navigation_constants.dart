@@ -1,10 +1,29 @@
 class NavigationConstants {
+  NavigationConstants._init();
   static const DEFAULT = '/';
-  static const TEST_VIEW = '/profile/test';
-  static const SECOND_TEST_VIEW = '/secondTest';
+  static const ROOT = '/root';
+
+  // ---- TAB --- //
   static const HOME = '/home';
-  static const PROFILE = '/profile';
-  static const CATEGORIES = '/categories';
+  static const SEARCH = '/search';
   static const NOTIFICATIONS = '/notifications';
-  static const SCAF = '/scaf';
+  static const MESSAGES = '/messages';
+
+  // ---- AUTH --- //
+  static const ONBOARD = '/onboard';
+  static const LOGIN = '/login';
+  static const SIGNIN = '/signin';
+
+  // --- CONTENT --- //
+  static const PROFILE = '/profile';
+  static const DETAILS = '/details';
+
+  // --- DRAWER --- //
+
+  static const SETTINGS = '/settings';
+  static const FOLLOWING = '/following';
+  static const FOLLOWERS = '/followers';
+
+  static const BOOKMARKS = '/bookmarks';
+  static const HELP = '/help';
 }

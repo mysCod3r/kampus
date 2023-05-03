@@ -1,3 +1,38 @@
 {
-    "current": "Türkçe"
+    "current": "Türkçe",
+    "welcome": "Kampüse Hoşgeldin",
+
+    "drawer":{
+        "settings": "Ayarlar ve Gizlilik",
+        "following": "Takip edilen",
+        "followers": "Takipçi",
+        "bookmarks": "Yer İşaretleri",
+        "help": "Yardım Merkezi"
+    },
+
+
+    "login":{
+        "login": "GİRİŞ YAP",
+        "signup": "Hesabın yok mu? KAYDOL",
+        "forgot": "ŞİFREMİ UNUTTUM",
+        "password": "   Şifre   ",
+        "email": "   Email   "
+    },
+    "signin":{
+        "signin": "KAYDOL",
+        "login": "Zaten bir hesabın var mı? GİRİŞ YAP",
+        "password": "   Şifre   ",
+        "email": "   Email   "   
+    },
+
+    "errorMessages":{
+        "userNotfound": "Kullanıcı bulunamadı.",
+        "wrongPassword": "Hatalı Şifre Girdiniz.",
+        "tooManyRequest": "Çok fazla hatalı deneme yaptınız.",
+        "emptyPassword" : "Şifre boş bırakılamaz.",
+        "emailAlreadyInUse" : "Bu eposta adresi zaten kullanımda.",
+        "invalidEmail" : "Geçersiz mail adresi girdiniz.",
+        "weakPassword" : "Şifren en az 8 karakter olmalı. Lütfen daha uzun bir şifre gir."
+
+    }
 }

@@ -11,6 +11,7 @@ class LightTheme {
     theme = ThemeData(
       scaffoldBackgroundColor: _lightColor._white,
       errorColor: _lightColor._red,
+      brightness: Brightness.light,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
               backgroundColor: _lightColor._blue,
@@ -27,10 +28,12 @@ class LightTheme {
             bodyText1: TextStyle(fontSize: 16, color: _lightColor._black),
           ),
       appBarTheme: AppBarTheme(
-        elevation: 1.0,
+        centerTitle: true,
+        toolbarHeight: 50,
+        elevation: 0.5,
         color: _lightColor._white,
         titleTextStyle: TextStyle(fontSize: 24, color: _lightColor._black),
-        iconTheme: IconThemeData(color: _lightColor._black),
+        iconTheme: IconThemeData(color: _lightColor._black, size: 30),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: _lightColor._white,
@@ -38,6 +41,59 @@ class LightTheme {
         selectedIconTheme: IconThemeData(color: _lightColor._blue),
         showSelectedLabels: false,
         showUnselectedLabels: false,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        fillColor: _lightColor._white_2,
+        filled: true,
+        iconColor: _lightColor._purple_1,
+        labelStyle: TextStyle(color: _lightColor._grey_2),
+        errorStyle: TextStyle(
+          color: _lightColor._red,
+          decorationColor: _lightColor._red,
+        ),
+        hintStyle: TextStyle(color: _lightColor._red),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 3, color: _lightColor._purple_1),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 3, color: _lightColor._red),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 4, color: _lightColor._red),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: _lightColor._purple_2),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 3, color: _lightColor._grey_2),
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+      iconTheme: IconThemeData(color: _lightColor._purple_1),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          disabledForegroundColor: _lightColor._grey_3,
+          foregroundColor: _lightColor._purple_1,
+        ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: _lightColor._purple_1,
+        behavior: SnackBarBehavior.floating,
+        elevation: 30,
+        actionTextColor: _lightColor._white,
+        contentTextStyle: TextStyle(
+          fontStyle: FontStyle.italic,
+          color: _lightColor._white,
+          overflow: TextOverflow.clip,
+        ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: _lightColor._white,
       ),
     );
   }
@@ -51,5 +107,6 @@ class _LightColor {
   final Color _grey_1 = ColorConstants.GREY_1;
   final Color _grey_2 = ColorConstants.GREY_2;
   final Color _grey_3 = ColorConstants.GREY_3;
+  // ignore: unused_field
   final Color _grey_4 = ColorConstants.GREY_4;
 }

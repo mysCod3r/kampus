@@ -1,3 +1,37 @@
 {
-    "current": "English"
+    "current": "English",
+    "welcome": "Welcome to Kampus",
+
+    "drawer":{
+        "settings": "Settings and Privacy",
+        "following": "Following",
+        "followers": "Followers",
+        "bookmarks": "Bookmarks",
+        "help": "Help Center"
+    },
+
+    "login":{
+        "login": "LOG IN",
+        "signup": "Don't have account? SIGN UP",
+        "forgot": "FORGOT PASSWORD",
+        "password": "   Password   ",
+        "email": "   Email   "
+    },
+    "signin":{
+        "signin": "SIGN IN",
+        "login": "Already have account? LOG IN",
+        "password": "   Password   ",
+        "email": "   Email   "   
+    },
+    "errorMessages":{
+        "userNotfound": "User Not found.",
+        "wrongPassword": "Wrong password, try again.",
+        "tooManyRequest": "You made too many false requests.",
+        "emptyPassword" : "Password cannot be empty.",
+        "emailAlreadyInUse" : "This e-mail address is already in use.",
+        "invalidEmail" : "You entered an invalid e-mail address.",
+        "weakPassword" : "Your password must be at least 8 characters. Please enter a longer password."
+
+    }
+
 }
