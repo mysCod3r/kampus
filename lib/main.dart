@@ -2,31 +2,36 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kampus/core/init/lang/language_manager.dart';
 import 'package:kampus/core/init/navigation/navigation_route.dart';
-import 'package:kampus/core/init/navigation/navigation_service.dart';
 import 'package:kampus/core/init/notifier/theme_notifier.dart';
-import 'package:kampus/product/init/notifier/product_providers.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'core/init/notifier/provider_notifier.dart';
+import 'product/init/notifier/product_providers.dart';
 
 Future<void> main() async {
   await _init();
   runApp(MultiProvider(
     providers: [
+      ...ApplicationProvider.instance.singleItems,
       ...ApplicationProvider.instance.dependItems,
-      ...ProductProvider.instance.uiChangesItems,
+      ...ProductProvider.instance.authItems,
+      ...ProductProvider.instance.dependItems,
     ],
     child: EasyLocalization(
-        supportedLocales: LanguageManager.instance.supportedLocales,
-        path: "assets/translations",
-        startLocale: LanguageManager.instance.trLocale,
-        child: const MyApp()),
+      supportedLocales: LanguageManager.instance.supportedLocales,
+      path: "assets/translations",
+      startLocale: LanguageManager.instance.trLocale,
+      child: const MyApp(),
+    ),
   ));
 }
 
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +46,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
-      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }

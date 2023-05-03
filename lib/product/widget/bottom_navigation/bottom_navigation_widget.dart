@@ -1,66 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:kampus/product/init/notifier/bottom_navigation_bar_notifier.dart';
+import 'package:kampus/core/constants/navigation_constants.dart';
+import 'package:kampus/product/init/notifier/navigation_notifier.dart';
 import 'package:provider/provider.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
-  const CustomBottomNavigation({super.key});
-
+  CustomBottomNavigation({super.key});
+  final List<String> _itemLabels = [
+    NavigationConstants.HOME,
+    NavigationConstants.SEARCH,
+    NavigationConstants.NOTIFICATIONS,
+    NavigationConstants.MESSAGES,
+  ];
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: context.watch<BottomNavigationBarNotifier>().currentIndex,
+      currentIndex: context.watch<NavigationNotifier>().currentIndex,
       items: [
         BottomNavigationBarItem(
-            label: "",
-            icon: context.read<BottomNavigationBarNotifier>().currentIndex == 0
+            label: _itemLabels[0],
+            icon: context.read<NavigationNotifier>().currentIndex == 0
                 ? const Icon(
                     Icons.home_filled,
                   )
                 : const Icon(Icons.home_outlined)),
         BottomNavigationBarItem(
-            label: "",
-            icon: context.read<BottomNavigationBarNotifier>().currentIndex == 1
+            label: _itemLabels[1],
+            icon: context.read<NavigationNotifier>().currentIndex == 1
                 ? const Icon(
-                    Icons.category,
+                    Icons.search,
                   )
-                : const Icon(Icons.category_outlined)),
+                : const Icon(Icons.search_outlined)),
         BottomNavigationBarItem(
-            label: "",
-            icon: context.read<BottomNavigationBarNotifier>().currentIndex == 2
+            label: _itemLabels[2],
+            icon: context.read<NavigationNotifier>().currentIndex == 2
                 ? const Icon(
                     Icons.notifications,
                   )
                 : const Icon(Icons.notifications_outlined)),
         BottomNavigationBarItem(
-            label: "",
-            icon: context.read<BottomNavigationBarNotifier>().currentIndex == 3
+            label: _itemLabels[3],
+            icon: context.read<NavigationNotifier>().currentIndex == 3
                 ? const Icon(
-                    Icons.person,
+                    Icons.message,
                   )
-                : const Icon(Icons.person_outline))
+                : const Icon(Icons.message_outlined))
       ],
       onTap: (value) {
-        // switch (value) {
-        //   case 0:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.HOME);
-        //     break;
-        //   case 1:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.CATEGORIES);
-        //     break;
-        //   case 2:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.NOTIFICATIONS);
-        //     break;
-        //   case 3:
-        //     NavigationService.instance
-        //         .navigateToPageReplace(path: NavigationConstants.PROFILE);
-        //     break;
-        //   default:
-        // }
-
-        context.read<BottomNavigationBarNotifier>().currentIndex = value;
+        context.read<NavigationNotifier>().currentIndex = value;
       },
     );
   }

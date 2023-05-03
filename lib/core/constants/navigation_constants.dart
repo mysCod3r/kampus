@@ -1,10 +1,20 @@
+// ignore_for_file: constant_identifier_names
+
 class NavigationConstants {
   static const DEFAULT = '/';
-  static const TEST_VIEW = '/profile/test';
-  static const SECOND_TEST_VIEW = '/secondTest';
+  // ---- TAB --- //
+  static const ROOT = '/root';
   static const HOME = '/home';
-  static const PROFILE = '/profile';
-  static const CATEGORIES = '/categories';
+  static const SEARCH = '/search';
   static const NOTIFICATIONS = '/notifications';
-  static const SCAF = '/scaf';
+  static const MESSAGES = '/messages';
+
+  // ---- AUTH --- //
+  static const ONBOARD = '/onboard';
+  static const LOGIN = '/login';
+  static const SIGNIN = '/signin';
+
+  // --- CONTENT --- //
+  static const PROFILE = '/profile';
+  static const DETAILS = '/details';
 }

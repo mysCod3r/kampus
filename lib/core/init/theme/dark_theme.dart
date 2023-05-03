@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:kampus/core/constants/color_constant.dart';
 
@@ -7,10 +9,7 @@ class DarkTheme {
   late ThemeData theme;
 
   DarkTheme() {
-    theme = ThemeData(
-        scaffoldBackgroundColor: _darkColor._black,
-        textTheme: ThemeData.dark().textTheme.copyWith(
-            subtitle1: TextStyle(fontSize: 25, color: _darkColor._white)));
+    theme = ThemeData(scaffoldBackgroundColor: _darkColor._black, textTheme: ThemeData.dark().textTheme.copyWith(subtitle1: TextStyle(fontSize: 25, color: _darkColor._white)));
   }
 }
 

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kampus/view/tab/home/view/home_view.dart';
-import 'package:kampus/view/tab/notifications/view/notifications_view.dart';
-import 'package:kampus/view/tab/profile/view/profile_view.dart';
+import 'package:kampus/view/pages/profile/view/profile_view.dart';
+import 'package:kampus/view/pages/details/view/details_view.dart';
 
-import '../../../view/tab/categories/view/categories_view.dart';
-import '../../../view/test/second_test_view.dart';
-import '../../../view/test/tab_test_view.dart';
-import '../../../view/test/test_view.dart';
+import '../../../view/root/view/root_view.dart';
+
 import '../../constants/navigation_constants.dart';
 
 class NavigationRoute {
@@ -18,46 +15,26 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.DEFAULT:
-        return normalNavigate(const TabTestView(), NavigationConstants.DEFAULT);
-
-      case NavigationConstants.TEST_VIEW:
-        return SlideLeftRoute<bool>(
-            builder: (BuildContext context) => const TestView(),
-            settings: const RouteSettings(name: NavigationConstants.TEST_VIEW));
-
-      //
-
-      case NavigationConstants.SECOND_TEST_VIEW:
-        return normalNavigate(
-            const SecondTestView(), NavigationConstants.SECOND_TEST_VIEW);
-      case NavigationConstants.HOME:
-        return normalNavigate(const HomeView(), NavigationConstants.HOME);
-      case NavigationConstants.CATEGORIES:
-        return normalNavigate(
-            const CategoriesView(), NavigationConstants.CATEGORIES);
-      case NavigationConstants.NOTIFICATIONS:
-        return normalNavigate(
-            const NotificationsView(), NavigationConstants.NOTIFICATIONS);
+        return normalNavigate(const RootView(), NavigationConstants.DEFAULT);
       case NavigationConstants.PROFILE:
         return normalNavigate(const ProfileView(), NavigationConstants.PROFILE);
+      case NavigationConstants.DETAILS:
+        return normalNavigate(const DetailsView(), NavigationConstants.DETAILS);
 
       default:
-        return normalNavigate(const TabTestView(), NavigationConstants.DEFAULT);
+        return normalNavigate(const RootView(), NavigationConstants.DEFAULT);
     }
   }
 
   MaterialPageRoute normalNavigate(Widget widget, String pageName) {
-    return MaterialPageRoute(
-        builder: (context) => widget, settings: RouteSettings(name: pageName));
+    return MaterialPageRoute(builder: (context) => widget, settings: RouteSettings(name: pageName));
   }
 }
 
 class SlideLeftRoute<T> extends MaterialPageRoute<T> {
-  SlideLeftRoute({required WidgetBuilder builder, RouteSettings? settings})
-      : super(builder: builder, settings: settings);
+  SlideLeftRoute({required WidgetBuilder builder, RouteSettings? settings}) : super(builder: builder, settings: settings);
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
     if (settings.name == "SplashPage") {
       return child;
     }
@@ -65,8 +42,7 @@ class SlideLeftRoute<T> extends MaterialPageRoute<T> {
       position: Tween<Offset>(
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
-      ).animate(
-          CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn)),
+      ).animate(CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn)),
       child: child,
     );
   }
