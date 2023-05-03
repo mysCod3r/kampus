@@ -13,22 +13,18 @@ class LightTheme {
       errorColor: _lightColor._red,
       brightness: Brightness.light,
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: _lightColor._purple_1,
-          animationDuration: const Duration(seconds: 1),
-          shape: const StadiumBorder(),
-          disabledForegroundColor: _lightColor._grey_1,
-          disabledBackgroundColor: _lightColor._grey_2,
-          padding: const EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: 24,
-          ),
-        ),
-      ),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: _lightColor._blue,
+              disabledBackgroundColor: _lightColor._grey_1,
+              textStyle: TextStyle(fontSize: 16, color: _lightColor._black),
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 24,
+              ))),
       textTheme: ThemeData.light().textTheme.copyWith(
             headline1: TextStyle(fontSize: 32, color: _lightColor._black),
-            subtitle1: TextStyle(fontSize: 16, color: _lightColor._black),
-            subtitle2: TextStyle(fontSize: 12, color: _lightColor._black),
+            subtitle1: TextStyle(fontSize: 24, color: _lightColor._black),
+            subtitle2: TextStyle(fontSize: 20, color: _lightColor._black),
             bodyText1: TextStyle(fontSize: 16, color: _lightColor._black),
           ),
       appBarTheme: AppBarTheme(
@@ -105,12 +101,9 @@ class LightTheme {
 
 class _LightColor {
   final Color _white = ColorConstants.WHITE;
-  final Color _white_2 = ColorConstants.WHITE_2;
   final Color _black = ColorConstants.BLACK;
   final Color _blue = ColorConstants.BLUE;
   final Color _red = ColorConstants.RED;
-  final Color _purple_1 = ColorConstants.PURPLE;
-  final Color _purple_2 = ColorConstants.PURPLE_SH;
   final Color _grey_1 = ColorConstants.GREY_1;
   final Color _grey_2 = ColorConstants.GREY_2;
   final Color _grey_3 = ColorConstants.GREY_3;
