@@ -1,0 +1,279 @@
+[33mcommit 685f61bd0fd2fdfefc42622e405bb548ed136d39[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: c1dfd36 914bfa1
+Author: mysCod3r <m.yasinsenocak@gmail.com>
+Date:   Wed May 3 21:14:28 2023 +0300
+
+    Merge branches 'master' and 'firebase' of https://github.com/mysCod3r/kampus
+
+[33mcommit 914bfa1ef3984cf759004497eedbacafd6a03ff8[m[33m ([m[1;31morigin/firebase[m[33m)[m
+Merge: 9ded4cc 7caa565
+Author: mysCod3r <m.yasinsenocak@gmail.com>
+Date:   Wed May 3 21:07:25 2023 +0300
+
+    Merge branch 'core' into firebase
+
+[33mcommit 9ded4ccb32e819208786fb8cfac09d5bbe9c7e8d[m
+Merge: 4b84abf f554995
+Author: mysCod3r <m.yasinsenocak@gmail.com>
+Date:   Wed May 3 21:07:11 2023 +0300
+
+    Merge branch 'view' into firebase
+
+[33mcommit 4b84abf1e17eb5adbcb7efc30005151ea0ad5488[m[33m ([m[1;31morigin/navigation_bar[m[33m)[m
+Merge: d1f3f88 2eaae1c
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 21:04:05 2023 +0300
+
+    Merge pull request #15 from mysCod3r/multi_nested_navigator_with_embedded_bottombar
+    
+    trying fix the project
+
+[33mcommit f554995410e2965c1434850616b6b23888c4ceb8[m[33m ([m[1;31morigin/view[m[33m)[m
+Merge: de43eb1 d1f3f88
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 21:02:49 2023 +0300
+
+    Merge pull request #14 from mysCod3r/navigation_bar
+    
+    trying fix the project
+
+[33mcommit 7caa56536becea73d3a0fa4ae7402d5f94c51a9d[m[33m ([m[1;31morigin/core[m[33m)[m
+Merge: 56d0ce7 de43eb1
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 21:01:50 2023 +0300
+
+    Merge pull request #13 from mysCod3r/view
+    
+    trying fix the project
+
+[33mcommit c1dfd365ddbc8b75043f041db185907d77e5bb36[m
+Merge: 2a3a2d7 d23d867
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 20:01:00 2023 +0300
+
+    Merge pull request #9 from mysCod3r/home-view
+    
+    Home view
+
+[33mcommit d23d86703258cd21e7ceee0c3eb5decf853ac177[m[33m ([m[1;31morigin/home-view[m[33m)[m
+Merge: 0db5bde 2a3a2d7
+Author: mysCod3r <m.yasinsenocak@gmail.com>
+Date:   Wed May 3 20:00:22 2023 +0300
+
+    Merge branch 'master' into home-view
+
+[33mcommit 2a3a2d78e80b1ff05984026e3370656e3a69254b[m
+Merge: 2dd9c08 4cdd6d3
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 05:47:59 2023 +0300
+
+    Merge pull request #11 from mysCod3r/revert-10-mobx
+    
+    Revert "Mobx"
+
+[33mcommit 4cdd6d39ece27fb47db3f9d70a3ee0ce2836cdc8[m[33m ([m[1;31morigin/revert-10-mobx[m[33m)[m
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 05:47:40 2023 +0300
+
+    Revert "Mobx"
+
+[33mcommit 2dd9c087085633f7e8c22e82d2711ce01ec2297e[m
+Merge: 266f2a0 63b1112
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Wed May 3 05:36:46 2023 +0300
+
+    Merge pull request #10 from mysCod3r/mobx
+    
+    Mobx
+
+[33mcommit 0db5bded59e57039cf411641fd65c302482666d6[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sat Oct 29 02:20:12 2022 +0300
+
+    home view ui ready
+
+[33mcommit 5b29c42c1b732421276b24e5c6ae7f0a1b84c3ea[m[33m ([m[1;31morigin/drawer_appbar[m[33m)[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Tue Oct 25 04:02:03 2022 +0300
+
+    some fix
+
+[33mcommit ac2da40831a17c1b9fc9c5588206884c42222108[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sun Oct 23 09:12:34 2022 +0300
+
+    BACKUP
+
+[33mcommit 32a9d3df157243a05f3214ad645a6c6f51c7abb9[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sun Oct 23 09:08:35 2022 +0300
+
+    BACKUP.
+    Drawer is ready. Tested on RootView.  Will be transfer to tab pages.
+
+[33mcommit 6dc067bc3e9318566736243526c49ae89962518b[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Thu Oct 20 03:28:14 2022 +0300
+
+    drawer and app bar started
+
+[33mcommit 2b8c8834dceb874e98d8d9bef4a68eb0f93415c1[m[33m ([m[1;31morigin/auth[m[33m)[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 19 03:37:16 2022 +0300
+
+    onWillPop fixed
+
+[33mcommit 241a6d6e981aced30f0d6d28682073d92d2f08ee[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 19 02:37:34 2022 +0300
+
+    auth operations has done. Firestore read and write data process started.
+
+[33mcommit 1a2b01bf91a700a3dc72d661ee3e833ee7e9d2a6[m[33m ([m[1;31morigin/signup[m[33m)[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Tue Oct 18 07:27:01 2022 +0300
+
+    signup view has done
+
+[33mcommit 28394133e1c02e184a6ee7613ddb34ac3e5a88c7[m[33m ([m[1;31morigin/login_view-has-done[m[33m)[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Tue Oct 18 03:51:14 2022 +0300
+
+    login view has done with service
+
+[33mcommit 2eaae1c0d10e70a3e47ca4ee03bd594073ebc50f[m[33m ([m[1;31morigin/multi_nested_navigator_with_embedded_bottombar[m[33m)[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sun Oct 16 04:43:30 2022 +0300
+
+    mutli navigators with embedded bottom var is done.
+
+[33mcommit 63b1112319fdf962ce3a8defc4982e642142fb65[m[33m ([m[1;31morigin/mobx[m[33m)[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sat Oct 15 11:08:05 2022 +0300
+
+    mobx entegreted
+
+[33mcommit 1ad85527d0f24317ae1f29f1483f9cf43f11d837[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sat Oct 15 11:03:32 2022 +0300
+
+    mobx entegreted
+
+[33mcommit fb27ad11149fb5a0d64fc71baf3a311c5a7aabff[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Fri Oct 14 11:15:15 2022 +0300
+
+    some navigating issues fixed
+
+[33mcommit 0db8454e8ecdafa4997b3978997ed52cf7caaf48[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Thu Oct 13 07:51:56 2022 +0300
+
+    login and signin is ready. will be editing later.
+
+[33mcommit 515258faac317cf0f744817a5d1e6d406722aa53[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 12 21:16:01 2022 +0300
+
+    onboard is ready. will be editing later.
+
+[33mcommit b98017190b44883a45661712aa18ad92b2afda0a[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 12 19:26:22 2022 +0300
+
+    onboard
+
+[33mcommit 1009053ff5cb1dcb6b8a58e1ac7368424c1fb105[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 12 19:23:16 2022 +0300
+
+    onboard started
+
+[33mcommit 40d0e4741e736239a125449955f9c8bb8afc0d35[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 12 19:22:59 2022 +0300
+
+    Revert "firebase added"
+    
+    This reverts commit 7a3ebcde71a8bdc998874ecd8c1a82960db93b0b.
+
+[33mcommit 7a3ebcde71a8bdc998874ecd8c1a82960db93b0b[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Wed Oct 12 19:20:58 2022 +0300
+
+    firebase added
+
+[33mcommit 266f2a0fb9e4fd8bf2123fe2fa4e932507f911d0[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Tue Oct 11 21:17:24 2022 +0300
+
+    routing has done
+
+[33mcommit 5575bb289afb99dfd759fea51c32e76658c5db10[m
+Merge: 7291f1e d1f3f88
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Tue Oct 11 05:59:01 2022 +0300
+
+    Merge pull request #3 from mysCod3r/navigation_bar
+    
+    Navigation bar
+
+[33mcommit d1f3f882e1126ce31d9b5f6dcf427d15c3bcf0c6[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sun Oct 9 03:09:46 2022 +0300
+
+    bottom nav bar and page changeg started
+
+[33mcommit 15a30ec194263833473606934ed7f19e193e3ab5[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Sat Oct 8 04:52:52 2022 +0300
+
+    navigation_Bar added. sample pages added. routing has started.
+
+[33mcommit 7291f1e3ec83e0e1d45bac5c307a04604378448f[m
+Merge: 9b53879 de43eb1
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Fri Oct 7 07:36:06 2022 +0300
+
+    Merge pull request #2 from mysCod3r/view
+    
+    theme, language, provider setup is done
+
+[33mcommit de43eb1b4621a56d1cebe9554ef3312611c570c2[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Fri Oct 7 07:35:16 2022 +0300
+
+    theme, language, provider setup is done
+
+[33mcommit 9b53879d4f4e8db9d4d98b3d6d0b78070b9e6efe[m
+Merge: 7a1e306 56d0ce7
+Author: mysCod3r <76634747+mysCod3r@users.noreply.github.com>
+Date:   Fri Oct 7 05:05:03 2022 +0300
+
+    Merge pull request #1 from mysCod3r/core
+    
+    Core
+
+[33mcommit 56d0ce737ca103dc0c9c0b5139ae08df6fa6a23a[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Fri Oct 7 05:04:37 2022 +0300
+
+    deleted windows
+
+[33mcommit c455a7561a731d0200c2ab82048d341d0b525bf4[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Fri Oct 7 05:03:19 2022 +0300
+
+    setup
+
+[33mcommit 7a1e306921a24c6e05f83c7b7c580164bff17776[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Fri Oct 7 04:53:12 2022 +0300
+
+    deleted linux and windows
+
+[33mcommit f0e9d77123063e4f5314494aaf2c279d6e958c03[m
+Author: Muhammed Yasin Senocak <m.yasinsenocak@gmail.com>
+Date:   Fri Oct 7 04:52:06 2022 +0300
+
+    first commit
