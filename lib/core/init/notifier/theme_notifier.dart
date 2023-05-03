@@ -10,5 +10,6 @@ class ThemeNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeData get currentTheme => !isLightTheme ? LightTheme().theme : DarkTheme().theme;
+  ThemeData get currentTheme =>
+      !isLightTheme ? LightTheme().theme : DarkTheme().theme;
 }

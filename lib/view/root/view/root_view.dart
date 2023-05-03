@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kampus/product/init/notifier/navigation_notifier.dart';
+import 'package:kampus/core/init/navigation/navigation_service.dart';
+import 'package:kampus/product/init/notifier/bottom_navigation_bar_notifier.dart';
 import 'package:kampus/product/widget/bottom_navigation/bottom_navigation_widget.dart';
-import 'package:kampus/view/_product/_constants/image_path_svg.dart';
-import 'package:kampus/view/root/viewmodel/root_view_model.dart';
+import 'package:kampus/view/root/model/root_model.dart';
+import 'package:kampus/view/tab/categories/view/categories_view.dart';
+import 'package:kampus/view/tab/notifications/view/notifications_view.dart';
+import 'package:kampus/view/tab/profile/view/profile_view.dart';
 
 import '../../../core/init/navigation/navigation_route.dart';
+import '../../tab/home/view/home_view.dart';
 import 'package:provider/provider.dart';
 
 class RootView extends StatefulWidget {
@@ -15,46 +18,40 @@ class RootView extends StatefulWidget {
   State<RootView> createState() => _RootViewState();
 }
 
+final GlobalKey<NavigatorState> _tab1navigatorKey = NavigationService.navigatorKeys[0];
+final GlobalKey<NavigatorState> _tab2navigatorKey = NavigationService.navigatorKeys[1];
+final GlobalKey<NavigatorState> _tab3navigatorKey = NavigationService.navigatorKeys[2];
+final GlobalKey<NavigatorState> _tab4navigatorKey = NavigationService.navigatorKeys[3];
+
+final List _pages = [
+  RootModel(tab: const HomeView(), title: "Home", icon: Icons.home_filled, navigatorkey: _tab1navigatorKey),
+  RootModel(tab: const NotificationsView(), title: "not", icon: Icons.abc, navigatorkey: _tab2navigatorKey),
+  RootModel(tab: const CategoriesView(), title: "category", icon: Icons.abc, navigatorkey: _tab3navigatorKey),
+  RootModel(tab: const ProfileView(), title: "profile", icon: Icons.abc, navigatorkey: _tab4navigatorKey),
+];
+
 class _RootViewState extends State<RootView> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: context.read<NavigationNotifier>().onWillPop,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: _buildAppBar(context),
-          body: _buildBody(context),
-          bottomNavigationBar: CustomBottomNavigation(),
+      onWillPop: () => NavigationService.instance.onWillPop(
+        tabIndex: context.read<BottomNavigationBarNotifier>().currentIndex,
+      ),
+      child: Scaffold(
+        body: IndexedStack(
+          index: context.watch<BottomNavigationBarNotifier>().currentIndex,
+          children: _pages
+              .map((page) => Navigator(
+                    key: page.navigatorkey,
+                    onGenerateRoute: NavigationRoute.instance.generateRoute,
+                    onGenerateInitialRoutes: (navigator, initialRoute) {
+                      return [MaterialPageRoute(builder: (context) => page.tab)];
+                    },
+                  ))
+              .toList(),
         ),
+        bottomNavigationBar: const CustomBottomNavigation(),
       ),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text(context.watch<NavigationNotifier>().currentPath),
-      leading: InkWell(
-        //    onTap: () => Scaffold.of(context).openDrawer(),
-        child: SvgPicture.asset(SVGImagePaths.instance!.onboardSVG1),
-      ),
-    );
-  }
-
-  IndexedStack _buildBody(BuildContext context) {
-    return IndexedStack(
-      index: context.watch<NavigationNotifier>().currentIndex,
-      children: context
-          .read<RootViewModel>()
-          .pages
-          .map((page) => Navigator(
-                key: page.navigatorkey,
-                onGenerateRoute: NavigationRoute.instance.generateRoute,
-                onGenerateInitialRoutes: (navigator, initialRoute) {
-                  return [MaterialPageRoute(builder: (context) => page.tab, settings: RouteSettings(name: page.title))];
-                },
-              ))
-          .toList(),
     );
   }
 }
